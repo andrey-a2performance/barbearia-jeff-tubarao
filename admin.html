@@ -1,0 +1,1499 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo | Barbearia Jeff</title>
+
+    <link rel="icon" type="image/png" href="logo.jpg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --gold: #c5a059;
+        --dark-bg: #0a0a0a;
+        --card-bg: #161616;
+        --text-gray: #a0a0a0;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: #e5e5e5;
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 100px; /* Espaço para a barra de salvar */
+      }
+
+      h1,
+      h2,
+      h3,
+      .serif-font {
+        font-family: "Playfair Display", serif;
+      }
+
+      .admin-hero {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+          url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1470");
+        background-size: cover;
+        padding: 40px 5%;
+        border-bottom: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .profile-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid var(--gold);
+        object-fit: cover;
+      }
+
+      .gold-btn {
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        padding: 8px 20px;
+        border-radius: 2px;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .gold-btn:hover {
+        background: var(--gold);
+        color: black;
+      }
+
+      .admin-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        color: var(--gold);
+        border-left: 4px solid var(--gold);
+        padding-left: 15px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        padding: 20px;
+        border: 1px solid rgba(197, 160, 89, 0.1);
+        text-align: center;
+      }
+
+      .stat-card h4 {
+        font-size: 0.7rem;
+        color: var(--text-gray);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .stat-card p {
+        font-size: 1.5rem;
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .appointments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .category-box {
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        min-height: 200px;
+      }
+
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+      }
+
+      .admin-table th {
+        text-align: left;
+        color: var(--gold);
+        padding: 10px;
+        border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+      }
+      .admin-table td {
+        padding: 15px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      }
+
+      .btn-action {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: 10px;
+      }
+      .btn-done {
+        color: #28a745;
+      }
+      .btn-delete {
+        color: #dc3545;
+      }
+
+      .day-card {
+        background: var(--card-bg);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .slots-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
+      }
+      .slot-checkbox {
+        display: none;
+      }
+      .slot-label {
+        display: block;
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #333;
+        font-size: 0.75rem;
+        cursor: pointer;
+      }
+      .slot-checkbox:checked + .slot-label {
+        background: var(--gold);
+        color: black;
+        border-color: var(--gold);
+      }
+
+      .save-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #000;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid var(--gold);
+        z-index: 1000;
+      }
+
+      /* 1. Limita a altura de todas as colunas de agendamento e histórico */
+      #lista-cabelo,
+      #lista-barba,
+      #lista-combos,
+      #lista-historico {
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 8px; /* Espaço para a barra não cobrir o texto */
+      }
+
+      /* 2. PADRONIZAÇÃO DAS BARRAS DOURADAS */
+      #lista-cabelo::-webkit-scrollbar,
+      #lista-barba::-webkit-scrollbar,
+      #lista-combos::-webkit-scrollbar,
+      #lista-historico::-webkit-scrollbar,
+      #lista-feedbacks-admin::-webkit-scrollbar {
+        /* <--- Adicionei este aqui */
+        width: 6px;
+      }
+
+      #lista-cabelo::-webkit-scrollbar-track,
+      #lista-barba::-webkit-scrollbar-track,
+      #lista-combos::-webkit-scrollbar-track,
+      #lista-historico::-webkit-scrollbar-track,
+      #lista-feedbacks-admin::-webkit-scrollbar-track {
+        /* <--- Adicionei este aqui */
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+      }
+
+      #lista-cabelo::-webkit-scrollbar-thumb,
+      #lista-barba::-webkit-scrollbar-thumb,
+      #lista-combos::-webkit-scrollbar-thumb,
+      #lista-historico::-webkit-scrollbar-thumb,
+      #lista-feedbacks-admin::-webkit-scrollbar-thumb {
+        /* <--- Adicionei este aqui */
+        background: var(--gold);
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+      }
+      /* 3. Ajuste para Firefox (Opcional, mas bom ter) */
+      #lista-cabelo,
+      #lista-barba,
+      #lista-combos,
+      #lista-historico {
+        scrollbar-width: thin;
+        scrollbar-color: var(--gold) rgba(255, 255, 255, 0.05);
+      }
+
+      /* Muda a cor do ícone do calendário nativo para Dourado */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(74%) sepia(30%) border(10%) saturate(467%)
+          hue-rotate(352deg) brightness(89%) contrast(85%);
+        cursor: pointer;
+        margin-left: 5px;
+      }
+
+      /* Garante que o campo de data aceite digitação e clique */
+      input[type="date"] {
+        position: relative;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      /* Pinta o ícone do calendário de dourado e melhora o clique */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(74%) sepia(30%) saturate(467%) hue-rotate(352deg)
+          brightness(89%) contrast(85%);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-hero">
+      <img src="logo.jpg" alt="Jeff" class="profile-img" />
+      <div style="flex-grow: 1">
+        <h1 id="titulo-painel" class="serif-font italic">
+          Painel Administrativo
+        </h1>
+        <p
+          style="
+            font-size: 0.8rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+          "
+        >
+          Barbearia Jeff Braga
+        </p>
+      </div>
+      <div>
+        <button class="gold-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-container">
+      <div
+        id="metrics-section"
+        style="display: block; opacity: 1; margin-bottom: 50px"
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+          "
+        >
+          <h2 class="section-title" style="margin: 0">
+            Dashboard Executivo 👑
+          </h2>
+          <input
+            type="date"
+            id="filtroDataFinanceiro"
+            style="
+              background: #1a1a1a;
+              color: #c5a059;
+              border: 1px solid #c5a059;
+              padding: 10px 15px;
+              border-radius: 4px;
+              font-family: Montserrat;
+              cursor: pointer;
+              outline: none;
+            "
+            onchange="calcularFaturamento()"
+          />
+        </div>
+
+        <div
+          class="stats-grid"
+          style="
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+          "
+        >
+          <div class="stat-card" style="border-top: 3px solid #c5a059">
+            <h4>
+              Caixa Diário
+              <span style="font-size: 0.6rem; opacity: 0.7">(DoD)</span>
+            </h4>
+            <p id="fat-dia">R$ 0,00</p>
+            <span id="trend-dia" style="font-size: 0.8rem; font-weight: bold"
+              >-</span
+            ><br />
+            <span style="font-size: 0.6rem; color: #888">vs. Ontem</span>
+          </div>
+
+          <div class="stat-card" style="border-top: 3px solid #c5a059">
+            <h4>
+              Acumulado Mês
+              <span style="font-size: 0.6rem; opacity: 0.7">(MTD)</span>
+            </h4>
+            <p id="fat-mes">R$ 0,00</p>
+            <span id="qtd-clientes-mes" style="font-size: 0.7rem; color: #888"
+              >- clientes atendidos</span
+            >
+          </div>
+
+          <div class="stat-card" style="border-top: 3px solid #c5a059">
+            <h4>
+              Ticket Médio
+              <span style="font-size: 0.6rem; opacity: 0.7">(AOV)</span>
+            </h4>
+            <p id="ticket-medio">R$ 0,00</p>
+            <span style="font-size: 0.6rem; color: #888"
+              >Média de gasto por cliente</span
+            >
+          </div>
+
+          <div
+            class="stat-card"
+            style="
+              border-top: 3px solid #28a745;
+              background: rgba(40, 167, 69, 0.05);
+            "
+          >
+            <h4 style="color: #28a745">
+              Previsão
+              <span style="font-size: 0.6rem; opacity: 0.7">(Forecast)</span>
+            </h4>
+            <p id="fat-forecast" style="color: #28a745">R$ 0,00</p>
+            <span style="font-size: 0.6rem; color: #888"
+              >Expectativa de fechamento</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="category-box"
+          style="
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+          "
+        >
+          <h3
+            style="
+              font-size: 0.8rem;
+              margin-bottom: 15px;
+              color: #c5a059;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+          >
+            Desempenho Semanal
+          </h3>
+          <div style="height: 250px; position: relative">
+            <canvas id="faturamentoChart"></canvas>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 50px">
+          <button
+            onclick="gerarRelatorioWA()"
+            class="gold-btn"
+            style="
+              flex: 1;
+              padding: 15px;
+              font-size: 0.8rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+            "
+          >
+            <i class="fab fa-whatsapp"></i> Enviar Fechamento
+          </button>
+          <button
+            onclick="window.print()"
+            class="gold-btn"
+            style="
+              flex: 1;
+              padding: 15px;
+              font-size: 0.8rem;
+              border-color: rgba(255, 255, 255, 0.2);
+              color: white;
+            "
+          >
+            <i class="fas fa-file-pdf"></i> PDF
+          </button>
+        </div>
+      </div>
+
+     <div class="category-box" style="margin-bottom: 40px; border: 1px dashed #c5a059; background: rgba(197, 160, 89, 0.03);">
+        <h3 style="font-size: 0.8rem; color: var(--gold); margin-bottom: 15px;">
+            <i class="fas fa-calendar-check"></i> Gestor de Disponibilidade (Bloqueios e Férias)
+        </h3>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+            <div style="flex: 1; min-width: 180px;">
+                <label style="font-size: 0.6rem; color: var(--gold); text-transform: uppercase;">Barbeiro:</label>
+                <select id="bloqueio-barbeiro" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 10px; border-radius: 4px;">
+                    <option value="Jeff Braga">Jeff - Jeferson</option>
+                    <option value="Thiago Teixeira">Thiago Teixeira</option>
+                    <option value="Léo - Leonardo">Léo - Leonardo</option>
+                    <option value="Ayrton">Ayrton</option>
+                </select>
+            </div>
+            <div style="flex: 1; min-width: 140px;">
+                <label style="font-size: 0.6rem; color: var(--gold); text-transform: uppercase;">Início:</label>
+                <input type="date" id="bloqueio-inicio" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 10px; border-radius: 4px;">
+            </div>
+            <div style="flex: 1; min-width: 140px;">
+                <label style="font-size: 0.6rem; color: var(--gold); text-transform: uppercase;">Fim:</label>
+                <input type="date" id="bloqueio-fim" style="width: 100%; background: #000; color: #fff; border: 1px solid #333; padding: 10px; border-radius: 4px;">
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button onclick="gerenciarBloqueioPeridodo('bloquear')" class="gold-btn" style="padding: 11px 20px; border-color: #dc3545; color: #dc3545;" title="Ocupar todos os horários">
+                    <i class="fas fa-lock"></i> Bloquear Total
+                </button>
+                <button onclick="gerenciarBloqueioPeridodo('liberar')" class="gold-btn" style="padding: 11px 20px; border-color: #28a745; color: #28a745;" title="Limpar agendamentos/bloqueios do período">
+                    <i class="fas fa-unlock"></i> Liberar Período
+                </button>
+            </div>
+        </div>
+        <p style="font-size: 0.6rem; color: #888; margin-top: 15px; font-style: italic;">
+            * <b>Bloquear:</b> Cria "agendamentos de sistema" para fechar a agenda. <br>
+            * <b>Liberar:</b> Exclui TODOS os registros (bloqueios ou clientes) no intervalo escolhido.
+        </p>
+      </div>
+
+      <h2 class="section-title">Gestão de Agendamentos</h2>
+
+      <div class="appointments-grid">
+       <div class="category-box">
+          <h3 style="font-size: 0.9rem; margin-bottom: 20px;">
+            <i class="fas fa-cut"></i> Cabelo
+          </h3>
+          <div id="lista-cabelo">Buscando...</div>
+        </div>
+        <div class="category-box">
+          <h3 style="font-size: 0.9rem; margin-bottom: 20px;">
+            <i class="fas fa-shaving-cream"></i> Barba
+          </h3>
+          <div id="lista-barba">Buscando...</div>
+        </div>
+        <div class="category-box">
+          <h3 style="font-size: 0.9rem; margin-bottom: 20px;">
+            <i class="fas fa-crown"></i> Combos & Química
+          </h3>
+          <div id="lista-combos">Buscando...</div>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-zinc-900/50 border border-white/5 rounded-lg p-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-white serif-font italic">
+              Moderação de Feedbacks
+            </h2>
+            <p class="text-[10px] text-gold uppercase tracking-widest mt-1">
+              Gerencie as avaliações que aparecem no site
+            </p>
+          </div>
+          <button
+            onclick="carregarFeedbacksAdmin()"
+            style="
+              background: transparent;
+              border: 1px solid #c5a059;
+              color: #c5a059;
+              padding: 8px 16px;
+              border-radius: 2px;
+              font-size: 10px;
+              text-transform: uppercase;
+              letter-spacing: 0.2em;
+              font-weight: bold;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              transition: 0.5s;
+            "
+            onmouseover="
+              this.style.background = '#c5a059';
+              this.style.color = 'black';
+            "
+            onmouseout="
+              this.style.background = 'transparent';
+              this.style.color = '#c5a059';
+            "
+          >
+            <i class="fas fa-sync-alt" style="font-size: 9px"></i> Sincronizar
+            Dados
+          </button>
+        </div>
+
+        <div
+          id="lista-feedbacks-admin"
+          class="space-y-4 pr-2 custom-scroll"
+          style="max-height: 480px; overflow-y: auto"
+        >
+          <p class="text-zinc-500 text-center py-10 italic text-sm">
+            Carregando avaliações...
+          </p>
+        </div>
+      </div>
+
+      <div
+        id="toast-admin"
+        style="
+          position: fixed;
+          bottom: 100px;
+          right: 20px;
+          background: #c5a059;
+          color: black;
+          padding: 12px 24px;
+          border-radius: 2px;
+          font-size: 11px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          display: none;
+          z-index: 10000;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        "
+      >
+        Ação realizada com sucesso!
+      </div>
+
+      <h2 class="section-title" style="margin-top: 60px">
+        <i
+          class="fas fa-calendar-day"
+          style="color: var(--gold); margin-right: 12px"
+        ></i>
+        Histórico de Atendidos
+      </h2>
+
+      <div
+        class="category-box"
+        style="
+          margin-bottom: 20px;
+          display: flex;
+          gap: 15px;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          border: 1px solid rgba(197, 160, 89, 0.3);
+        "
+      >
+        <div style="flex: 1; min-width: 140px">
+          <label
+            style="
+              font-size: 0.6rem;
+              color: var(--gold);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+            >Início:</label
+          >
+          <input
+            type="date"
+            id="filtroHistInicio"
+            onclick="this.showPicker()"
+            style="
+              width: 100%;
+              background: #000;
+              color: #fff;
+              border: 1px solid #333;
+              padding: 10px;
+              border-radius: 4px;
+              font-family: Montserrat;
+              cursor: pointer;
+            "
+          />
+        </div>
+        <div style="flex: 1; min-width: 140px">
+          <label
+            style="
+              font-size: 0.6rem;
+              color: var(--gold);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+            >Fim:</label
+          >
+          <input
+            type="date"
+            id="filtroHistFim"
+            onclick="this.showPicker()"
+            style="
+              width: 100%;
+              background: #000;
+              color: #fff;
+              border: 1px solid #333;
+              padding: 10px;
+              border-radius: 4px;
+              font-family: Montserrat;
+              cursor: pointer;
+            "
+          />
+        </div>
+        <div style="flex: 1; min-width: 140px">
+          <label
+            style="
+              font-size: 0.6rem;
+              color: var(--gold);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+            >Serviço:</label
+          >
+         <select
+            id="filtroHistServico"
+            style="
+              width: 100%;
+              background: #000;
+              color: #fff;
+              border: 1px solid #333;
+              padding: 10px;
+              border-radius: 4px;
+              font-family: Montserrat;
+            "
+          >
+            <option value="todos">Todos os Serviços</option>
+            <option value="cabelo">Cabelo (Equipe)</option>
+            <option value="barba">Barba (Equipe)</option>
+            <option value="jeff">Premium Jeff Braga</option>
+            <option value="quimica">Química & Estética</option>
+          </select>
+        </div>
+        <button
+          onclick="filtrarHistorico()"
+          class="gold-btn"
+          style="padding: 11px 25px"
+        >
+          <i class="fas fa-filter"></i> Filtrar
+        </button>
+      </div>
+
+      <div class="category-box" style="padding: 10px">
+        <div
+          id="lista-historico"
+          style="max-height: 500px; overflow-y: auto; overflow-x: hidden"
+        >
+          Buscando histórico...
+        </div>
+        <div
+          id="total-historico"
+          style="
+            margin-top: 15px;
+            padding: 15px;
+            border-top: 1px solid var(--gold);
+            text-align: right;
+            font-weight: bold;
+            color: var(--gold);
+            font-size: 1.1rem;
+          "
+        ></div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 60px">
+        Configuração da Agenda
+      </h2>
+
+      <div class="flex justify-end mb-4">
+        <button
+          onclick="selecionarTudo()"
+          class="text-[10px] font-bold uppercase tracking-widest border border-[#c5a059]/40 text-[#c5a059] px-4 py-2 rounded-sm hover:bg-[#c5a059] hover:text-black transition-all"
+        >
+          <i class="fas fa-check-double mr-2"></i> Selecionar Todos os Horários
+        </button>
+      </div>
+
+      <div id="schedule-container"></div>
+    </main>
+
+    <div class="save-bar">
+      <button
+        class="gold-btn"
+        style="padding: 15px 40px"
+        onclick="salvarConfiguracao()"
+      >
+        Atualizar Agenda no Site
+      </button>
+    </div>
+
+    <script>
+      // --- CONFIGURAÇÃO MASTER A2 PERFORMANCE ---
+      const API_URL = "/api";
+      const CLIENT_SLUG = "jeff-braga";
+      const auth = localStorage.getItem("auth_jeff");
+
+      if (!auth) {
+        window.location.href = "login.html";
+      }
+      const isOwner = auth === "jeff_admin";
+
+      // Variáveis Globais de Estado
+      let historicoGlobal = [];
+      let agendamentosGlobais = [];
+
+      // --- INICIALIZAÇÃO ---
+      window.onload = async () => {
+        try {
+          const titulo = document.getElementById("titulo-painel");
+          const metricsSection = document.getElementById("metrics-section");
+
+          // 1. Lógica de Permissões
+          if (isOwner) {
+            if (metricsSection) metricsSection.style.display = "block";
+            if (titulo) titulo.innerText = "Painel de Comando 👑";
+            document.title = "Comando - Barbearia Jeff";
+
+            const hoje = new Date().toISOString().split("T")[0];
+            const filtroData = document.getElementById("filtroDataFinanceiro");
+            if (filtroData) filtroData.value = hoje;
+          } else {
+            if (metricsSection) metricsSection.style.display = "none";
+            if (titulo) titulo.innerText = "Painel de Atendimento ✂️";
+            document.title = "Atendimento - Barbearia Jeff";
+          }
+
+          // 2. Carregamento de dados (Executa para ambos)
+          renderizarAgenda();
+          await Promise.all([
+            carregarAgendamentos(),
+            carregarHistorico(),
+            carregarFeedbacksAdmin(),
+          ]);
+
+          // 3. Funções exclusivas do Dono (BI e Gráficos)
+          if (isOwner) {
+            if (typeof renderizarGrafico === "function") renderizarGrafico();
+            calcularFaturamento();
+          }
+        } catch (error) {
+          console.error("Erro crítico no carregamento:", error);
+        }
+      };
+
+      function logout() {
+        localStorage.removeItem("auth_jeff");
+        window.location.href = "login.html";
+      }
+
+      // --- CÉREBRO DE BI (A2 PERFORMANCE) ---
+      function calcularFaturamento() {
+        const inputData = document.getElementById(
+          "filtroDataFinanceiro",
+        )?.value;
+        if (!inputData) return;
+
+        const anoMes = inputData.substring(0, 7);
+        const dataSelecionadaObj = new Date(inputData + "T12:00:00");
+        const dataOntemObj = new Date(dataSelecionadaObj);
+        dataOntemObj.setDate(dataOntemObj.getDate() - 1);
+        const ontemStr = dataOntemObj.toISOString().split("T")[0];
+
+        let sDia = 0,
+          sOntem = 0,
+          sMes = 0,
+          clientesMes = 0;
+
+        historicoGlobal.forEach((h) => {
+          const val = parseFloat(h.valor) || 0;
+          const dataH = h.data.includes("/")
+            ? h.data.split("/").reverse().join("-")
+            : h.data;
+
+          if (dataH === inputData) sDia += val;
+          if (dataH === ontemStr) sOntem += val;
+          if (dataH.startsWith(anoMes)) {
+            sMes += val;
+            clientesMes++;
+          }
+        });
+
+        let sAgendadoMes = 0;
+        agendamentosGlobais.forEach((a) => {
+          const val = parseFloat(a.valor) || 0;
+          const dataA = a.data.includes("/")
+            ? a.data.split("/").reverse().join("-")
+            : a.data;
+          if (dataA.startsWith(anoMes) && dataA >= inputData) {
+            sAgendadoMes += val;
+          }
+        });
+
+        const forecastTotal = sMes + sAgendadoMes;
+        const ticketMedio = clientesMes > 0 ? sMes / clientesMes : 0;
+
+        // Renderização da Tendência (Trend)
+        let trendHTML =
+          "<span style='color: #888; font-size: 0.7rem;'>Sem dados de ontem</span>";
+        if (sOntem > 0) {
+          const dif = ((sDia - sOntem) / sOntem) * 100;
+          const cor = dif >= 0 ? "#28a745" : "#dc3545";
+          const icone = dif >= 0 ? "fa-arrow-up" : "fa-arrow-down";
+          trendHTML = `<span style='color: ${cor};'><i class='fas ${icone}'></i> ${Math.abs(dif).toFixed(1)}%</span>`;
+        }
+
+        // Atualização do DOM com segurança
+        const safeSetText = (id, text) => {
+          if (document.getElementById(id))
+            document.getElementById(id).innerText = text;
+        };
+
+        safeSetText("fat-dia", "R$ " + sDia.toFixed(2));
+        safeSetText("fat-mes", "R$ " + sMes.toFixed(2));
+        safeSetText("ticket-medio", "R$ " + ticketMedio.toFixed(2));
+        safeSetText("fat-forecast", "R$ " + forecastTotal.toFixed(2));
+        safeSetText("qtd-clientes-mes", `${clientesMes} atendidos no mês`);
+        if (document.getElementById("trend-dia"))
+          document.getElementById("trend-dia").innerHTML = trendHTML;
+      }
+
+      // --- AGENDAMENTOS ---
+     async function carregarAgendamentos() {
+        try {
+          // Shark, agora usamos a variável global para garantir a conexão
+          const res = await fetch(`${API_URL}/agendamentos?t=${Date.now()}`, {
+            headers: { "Cache-Control": "no-cache" },
+          });
+          const dados = await res.json();
+          const lista = Array.isArray(dados) ? dados : dados.results || [];
+
+          agendamentosGlobais = lista
+            .filter((a) => a.client_slug === CLIENT_SLUG)
+            .sort((a, b) => {
+              if (a.data !== b.data) {
+                return a.data.localeCompare(b.data);
+              }
+              return a.horario.localeCompare(b.horario);
+            });
+
+          const colunas = {
+            cabelo: document.getElementById("lista-cabelo"),
+            barba: document.getElementById("lista-barba"),
+            combos: document.getElementById("lista-combos"),
+          };
+
+          Object.values(colunas).forEach((c) => {
+            if (c) c.innerHTML = "";
+          });
+
+          agendamentosGlobais.forEach((a) => {
+            const serv = a.servico.toLowerCase();
+            const dataFormatada = a.data.split("-").reverse().join("/");
+
+            // HTML DO CARD ATUALIZADO COM ESTILO E MIMO
+            const html = `
+                <div style="background: rgba(255,255,255,0.02); padding: 15px; margin-bottom: 10px; border-left: 2px solid var(--gold);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <span style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">${a.horario} - ${dataFormatada}</span>
+                        <div>
+                            <button class="btn-action btn-done" onclick="deletarAgendamento('${a.id}', 'Concluído')" title="Concluir"><i class="fas fa-check"></i></button>
+                            <button class="btn-action btn-delete" onclick="deletarAgendamento('${a.id}', 'Excluir')" title="Excluir"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <p style="margin: 5px 0; font-weight: bold; font-size: 0.9rem;">${a.nome}</p>
+                    <p style="font-size: 0.7rem; color: #888;">💈 ${a.profissional} | ✂️ ${a.servico}</p>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 8px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="color: #c5a059;">🎨 ${a.estilo_sugerido || "Padrão"}</span>
+                        <span style="color: #28a745;">🥤 ${a.cortesia || "Nenhuma"}</span>
+                    </div>
+                </div>`;
+
+            // Shark, aqui a mágica da A2 para separar Cabelo/Barba da Química e Estética
+            const ehQuimicaEstetica = serv.includes("matização") || serv.includes("progressiva") || serv.includes("depilação") || serv.includes("sobrancelha") || serv.includes("combo");
+            
+            if (!ehQuimicaEstetica && (serv.includes("corte") || serv.includes("cabelo")) && colunas.cabelo)
+              colunas.cabelo.innerHTML += html;
+            else if (!ehQuimicaEstetica && (serv.includes("barba") || serv.includes("terapia")) && colunas.barba)
+              colunas.barba.innerHTML += html;
+            else if (colunas.combos) 
+              colunas.combos.innerHTML += html;
+          });
+
+          if (isOwner) calcularFaturamento();
+        } catch (e) {
+          console.error("Erro agendamentos:", e);
+        }
+      }
+
+      function filtrarHistorico() {
+        const inicio = document.getElementById("filtroHistInicio").value;
+        const fim = document.getElementById("filtroHistFim").value;
+        const servico = document.getElementById("filtroHistServico").value;
+        // Pega o valor da busca caso você queira adicionar um campo de texto depois
+        const busca = document.getElementById("buscaHistorico")
+          ? document.getElementById("buscaHistorico").value.toLowerCase()
+          : "";
+
+        let filtrados = historicoGlobal;
+
+        // 1. Filtro por Data
+        if (inicio) filtrados = filtrados.filter((h) => h.data >= inicio);
+        if (fim) filtrados = filtrados.filter((h) => h.data <= fim);
+
+        // 2. Filtro por Categoria (Sincronizado com os novos serviços Shark)
+        if (servico !== "todos") {
+          filtrados = filtrados.filter((h) => {
+            const s = h.servico.toLowerCase();
+            if (servico === "cabelo")
+              return (s.includes("corte") || s.includes("cabelo")) && !s.includes("jeff");
+            if (servico === "barba")
+              return (s.includes("barba") || s.includes("terapia")) && !s.includes("jeff");
+            if (servico === "jeff")
+              return s.includes("jeff");
+            if (servico === "quimica")
+              return s.includes("matização") || s.includes("progressiva") || s.includes("depilação") || s.includes("sobrancelha") || s.includes("combo");
+            return true;
+          });
+        }
+
+        // 3. Filtro por Nome, Estilo ou Mimo (Busca Geral)
+        if (busca) {
+          filtrados = filtrados.filter(
+            (h) =>
+              h.nome.toLowerCase().includes(busca) ||
+              (h.estilo_sugerido &&
+                h.estilo_sugerido.toLowerCase().includes(busca)) ||
+              (h.cortesia && h.cortesia.toLowerCase().includes(busca)),
+          );
+        }
+
+        renderizarTabelaHistorico(filtrados);
+
+        // Shark, aqui a mágica da A2: o gráfico reage ao seu filtro na hora!
+        if (isOwner) renderizarGrafico(filtrados);
+      }
+      // --- HISTÓRICO ---
+      async function carregarHistorico() {
+        try {
+          // Shark, agora buscamos na nuvem via API_URL global
+          const res = await fetch(`${API_URL}/historico?t=${Date.now()}`, {
+            headers: { "Cache-Control": "no-cache" },
+          });
+
+          const dados = await res.json();
+          const lista = Array.isArray(dados) ? dados : dados.results || [];
+
+          historicoGlobal = lista
+            .filter((h) => h.client_slug === CLIENT_SLUG)
+            .sort((a, b) => {
+              // ORDENAÇÃO INVERSA: O mais recente (data e hora) aparece primeiro
+              const dataA = new Date(`${a.data}T${a.horario || "00:00"}`);
+              const dataB = new Date(`${b.data}T${b.horario || "00:00"}`);
+              return dataB - dataA;
+            });
+
+          renderizarTabelaHistorico(historicoGlobal);
+
+          if (isOwner) calcularFaturamento();
+        } catch (e) {
+          console.error("Erro histórico:", e);
+        }
+      }
+
+      function renderizarTabelaHistorico(lista) {
+        // Shark, ajustamos para o ID correto que existe no seu HTML
+        const container = document.getElementById("lista-historico");
+        if (!container) return;
+
+        if (lista.length === 0) {
+          container.innerHTML =
+            "<p style='color:#888; text-align:center; padding:20px;'>Nenhum histórico encontrado.</p>";
+          return;
+        }
+
+        // Criamos a tabela com as novas colunas de Estilo e Mimo
+        let html = `
+        <table class='admin-table' style="width:100%; border-collapse: collapse; font-size: 0.8rem;">
+            <thead>
+                <tr style="border-bottom: 1px solid #333; text-align: left; color: var(--gold);">
+                    <th style="padding: 10px;">Data</th>
+                    <th style="padding: 10px;">Cliente</th>
+                    <th style="padding: 10px;">Serviço</th>
+                    <th style="padding: 10px;">Estilo</th>
+                    <th style="padding: 10px;">Mimo</th>
+                    <th style="padding: 10px;">Barbeiro</th>
+                    <th style="padding: 10px;">Valor</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+        lista.forEach((h) => {
+          const v = parseFloat(h.valor) || 0;
+          const dataExibicao = h.data.includes("-")
+            ? h.data.split("-").reverse().join("/")
+            : h.data;
+
+          html += `
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 10px;">${dataExibicao}</td>
+                <td style="padding: 10px; font-weight: bold;">${h.nome}</td>
+                <td style="padding: 10px; color: var(--gold);">${h.servico}</td>
+                <td style="padding: 10px;">🎨 ${h.estilo_sugerido || "-"}</td>
+                <td style="padding: 10px;">🥤 ${h.cortesia || "-"}</td>
+                <td style="padding: 10px;">${h.profissional}</td>
+                <td style="padding: 10px; font-weight: bold;">R$ ${v.toFixed(2)}</td>
+            </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      }
+
+      // --- CONFIGURAÇÃO DA AGENDA ---
+      const horariosBase = [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+      ];
+
+      function renderizarAgenda() {
+        const container = document.getElementById("schedule-container");
+        if (!container) return;
+
+        const dias = [
+          "Segunda",
+          "Terça",
+          "Quarta",
+          "Quinta",
+          "Sexta",
+          "Sábado",
+        ];
+        container.innerHTML = "";
+
+        dias.forEach((nome, i) => {
+          let slots = "";
+          horariosBase.forEach((h) => {
+            const id = `slot-${i + 1}-${h.replace(":", "")}`;
+            slots += `<input type="checkbox" id="${id}" class="slot-checkbox" data-dia="${i + 1}" data-hora="${h}">
+                          <label for="${id}" class="slot-label">${h}</label>`;
+          });
+          container.innerHTML += `<div class="day-card"><h4>${nome}</h4><div class="slots-grid">${slots}</div></div>`;
+        });
+        carregarConfiguracaoExistente();
+      }
+
+      // 1. FUNÇÃO PARA SELECIONAR TODOS OS HORÁRIOS
+      function selecionarTudo() {
+        const checkboxes = document.querySelectorAll(".slot-checkbox");
+        checkboxes.forEach((cb) => {
+          cb.checked = true;
+        });
+        console.log("✅ Todos os horários foram marcados!");
+      }
+
+      // 2. FUNÇÃO SALVAR CONFIGURAÇÃO (VERSÃO FINAL BLINDADA)
+      async function salvarConfiguracao() {
+        const btn = document.querySelector(".save-bar button");
+        const textoOriginal = btn.innerText;
+
+        // 1. Coleta os horários marcados
+        const checkboxes = document.querySelectorAll(".slot-checkbox:checked");
+
+        // 2. Formatação rigorosa (Garantindo que dia é número e hora é string limpa)
+        const slots = Array.from(checkboxes).map((cb) => ({
+          dia_semana: parseInt(cb.dataset.dia),
+          horario: cb.dataset.hora.trim(),
+        }));
+
+        // 3. Validação antes de enviar
+        if (slots.length === 0) {
+          alert(
+            "⚠️ Shark, selecione pelo menos um horário antes de atualizar!",
+          );
+          return;
+        }
+
+        btn.innerText = "SALVANDO...";
+        btn.disabled = true;
+
+      try {
+          // Shark, limpeza de cabeçalhos para evitar bloqueio de rede (CORS)
+          const response = await fetch(`${API_URL}/configuracao?client_slug=${CLIENT_SLUG}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                client_slug: CLIENT_SLUG,
+                slots: slots,
+              })
+            }
+          );
+
+          if (response.ok) {
+            alert("✅ Agenda da Barbearia Jeff Braga atualizada com sucesso!");
+            if (typeof carregarConfiguracaoExistente === "function") {
+              await carregarConfiguracaoExistente();
+            }
+          } else {
+            // Shark, agora buscamos o erro apenas se a resposta não for OK
+            const resultado = await response.json();
+            console.error("Erro do Servidor:", resultado);
+            alert("❌ O servidor recusou: " + (resultado.message || "Erro de validação."));
+          }
+        } catch (e) {
+          console.error("Erro de conexão:", e);
+          alert("📡 Erro de rede: Não foi possível alcançar o servidor.");
+        } finally {
+          btn.innerText = textoOriginal;
+          btn.disabled = false;
+        }
+      }
+
+      // --- GRÁFICOS E RELATÓRIOS ---
+     function renderizarGrafico(dadosFiltrados = null) {
+        const canvas = document.getElementById("faturamentoChart");
+        if (!canvas || typeof Chart === "undefined") return;
+
+        // Se não passar dados, usa o histórico global
+        const fonteDados = dadosFiltrados || historicoGlobal;
+
+        // Shark, aqui a A2 agrupa por data para o gráfico não ficar poluído
+        const agrp = fonteDados.reduce((acc, h) => {
+          const dataBR = h.data.split("-").reverse().slice(0, 2).join("/");
+          acc[dataBR] = (acc[dataBR] || 0) + parseFloat(h.valor);
+          return acc;
+        }, {});
+
+        // Pegamos os últimos 7 dias processados para manter o visual limpo
+        const labels = Object.keys(agrp).slice(-7);
+        const valores = labels.map(l => agrp[l]);
+
+        const ctx = canvas.getContext("2d");
+        if (window.meuGrafico instanceof Chart) window.meuGrafico.destroy();
+
+        window.meuGrafico = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels.length > 0 ? labels : ["Vazio"],
+            datasets: [{
+              label: "Faturamento R$",
+              data: valores.length > 0 ? valores : [0],
+              borderColor: "#c5a059",
+              backgroundColor: "rgba(197, 160, 89, 0.1)",
+              pointBackgroundColor: "#c5a059",
+              tension: 0.4,
+              fill: true,
+            }],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: "rgba(255,255,255,0.05)" } },
+              x: { grid: { display: false } }
+            }
+          },
+        });
+      }
+
+      function gerarRelatorioWA() {
+        const dia = document.getElementById("fat-dia")?.innerText || "R$ 0,00";
+        const mes = document.getElementById("fat-mes")?.innerText || "R$ 0,00";
+        const forecast =
+          document.getElementById("fat-forecast")?.innerText || "R$ 0,00";
+
+        const texto =
+          `📊 *FECHAMENTO BARBEARIA JEFF*\n\n` +
+          `💰 *Caixa Hoje:* ${dia}\n` +
+          `📈 *Acumulado Mês:* ${mes}\n` +
+          `🔮 *Previsão Final:* ${forecast}\n\n` +
+          `_Relatório gerado pelo Painel Executivo._`;
+
+        window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`);
+      }
+
+      // Funções de API simplificadas
+      async function carregarConfiguracaoExistente() {
+        try {
+          // Shark, agora sincronizado com a API Master
+          const res = await fetch(`${API_URL}/configuracao?client_slug=${CLIENT_SLUG}`);
+          const salvo = await res.json();
+          const dados = salvo.results || salvo;
+          if (Array.isArray(dados)) {
+            dados.forEach((item) => {
+              const id = `slot-${item.dia_semana}-${item.horario.replace(":", "")}`;
+              const el = document.getElementById(id);
+              if (el) el.checked = true;
+            });
+          }
+        } catch (e) {
+          console.error("Erro ao carregar config existente.");
+        }
+      }
+
+      async function deletarAgendamento(id, acao) {
+        if (!confirm(`Deseja marcar como ${acao}?`)) return;
+
+        try {
+          // Feedback visual imediato: mostra que está processando
+          const colunas = ["lista-cabelo", "lista-barba", "lista-combos"];
+          colunas.forEach((idCol) => {
+            const el = document.getElementById(idCol);
+            if (el) el.style.opacity = "0.5";
+          });
+
+          // Shark, agora usamos a API_URL global para evitar erro de rede!
+          const url =
+            acao === "Concluído"
+              ? `${API_URL}/concluir`
+              : `${API_URL}/agendamentos/${id}`;
+          const res = await fetch(url, {
+            method: acao === "Concluído" ? "POST" : "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: acao === "Concluído" ? JSON.stringify({ id }) : null,
+          });
+
+          if (res.ok) {
+            // Recarrega os dados do banco sem cache
+            await carregarAgendamentos();
+            await carregarHistorico();
+
+            // Se tiver o elemento de Toast (sucesso), mostra ele
+            const toast = document.getElementById("toast-admin");
+            if (toast) {
+              toast.innerText =
+                acao === "Concluído"
+                  ? "✅ Atendimento Concluído!"
+                  : "🗑️ Agendamento Excluído!";
+              toast.style.display = "block";
+              setTimeout(() => {
+                toast.style.display = "none";
+              }, 3000);
+            }
+          }
+        } catch (e) {
+          console.error("Erro ao atualizar interface:", e);
+          alert("Erro ao conectar com o servidor.");
+        } finally {
+          // Volta a opacidade ao normal
+          const colunas = ["lista-cabelo", "lista-barba", "lista-combos"];
+          colunas.forEach((idCol) => {
+            const el = document.getElementById(idCol);
+            if (el) el.style.opacity = "1";
+          });
+        }
+      }
+
+      // --- LÓGICA DE BLOQUEIO DE DISPONIBILIDADE SHARK ---
+      async function executarBloqueioDia() {
+        const barbeiro = document.getElementById("bloqueio-barbeiro").value;
+        const data = document.getElementById("bloqueio-data").value;
+
+        if (!data) return alert("Shark, selecione a data para o bloqueio!");
+        if (!confirm(`Confirmar bloqueio total de ${barbeiro} no dia ${data.split('-').reverse().join('/')}?`)) return;
+
+        // Pegamos todos os horários da base para ocupar a agenda
+        const horarios = ["08:00","09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00"];
+        
+        try {
+           // Shark, agora o bloqueio usa a rota global blindada
+            for (let hora of horarios) {
+                await fetch(`${API_URL}/agendamentos`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        client_slug: CLIENT_SLUG,
+                        nome: "🚫 INDISPONÍVEL",
+                        whatsapp: "00000000000",
+                        servico: "BLOQUEIO ADMINISTRATIVO",
+                        profissional: barbeiro,
+                        data: data,
+                        horario: hora,
+                        valor: 0,
+                        status: "Bloqueado"
+                    })
+                });
+            }
+            alert(`Agenda de ${barbeiro} bloqueada com sucesso!`);
+            carregarAgendamentos();
+        } catch (e) {
+            console.error("Erro ao bloquear:", e);
+            alert("Falha ao comunicar bloqueio.");
+        }
+      }
+
+
+      async function carregarFeedbacksAdmin() {
+        const container = document.getElementById("lista-feedbacks-admin");
+        if (!container) return;
+        try {
+          // Shark, agora sincronizado com a rota master de feedbacks
+          const res = await fetch(`${API_URL}/feedbacks`);
+          const data = await res.json();
+          if (!data.feedbacks || data.feedbacks.length === 0) {
+            container.innerHTML =
+              '<p class="text-zinc-600 text-center py-10 italic text-sm">Nenhum feedback.</p>';
+            return;
+          }
+          container.innerHTML = data.feedbacks
+            .map(
+              (f) => `
+                <div class="bg-black/40 border border-white/5 p-5 rounded-sm flex justify-between items-center group hover:border-gold/30 transition-all duration-500">
+                    <div class="flex-1 pr-6">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span style="color: #c5a059; font-weight: bold; font-size: 10px; text-transform: uppercase;">${f.nome}</span>
+                            <span>${"⭐".repeat(f.nota)}</span>
+                        </div>
+                        <p class="text-zinc-400 text-xs italic">"${f.mensagem}"</p>
+                    </div>
+                    <button onclick="deletarFeedback(${f.id})" class="btn-delete-feedback">Remover</button>
+                </div>`,
+            )
+            .join("");
+        } catch (err) {
+          container.innerHTML = "<p>Erro feedbacks.</p>";
+        }
+      }
+
+      // Exemplo de como pegar dados reais para o gráfico
+      function prepararDadosGrafico() {
+        const ultimos7Dias = []; // Lógica para filtrar historicoGlobal
+        // ... processar dados ...
+        return valores;
+      }
+
+      async function deletarFeedback(id) {
+        if (!confirm("Deseja remover este feedback permanentemente?")) return;
+        try {
+          // Shark, comando de exclusão enviado para a nuvem via API_URL
+          const res = await fetch(`${API_URL}/feedbacks/${id}`, {
+              method: "DELETE",
+            },
+          );
+          if (res.ok) {
+            alert("✅ Feedback removido com sucesso!");
+            carregarFeedbacksAdmin();
+          }
+       } catch (err) {
+          console.error("Erro ao deletar feedback:", err);
+        }
+      }
+
+      // --- MOTOR DE DISPONIBILIDADE ELITE (BLOQUEIO POR PERÍODO) ---
+    async function gerenciarBloqueioPeridodo(acao) {
+        const barbeiro = document.getElementById("bloqueio-barbeiro").value;
+        const dataInicio = document.getElementById("bloqueio-inicio").value;
+        const dataFim = document.getElementById("bloqueio-fim").value;
+
+        if (!dataInicio || !dataFim) return alert("Shark, selecione as datas de início e fim!");
+        if (dataInicio > dataFim) return alert("A data de início não pode ser maior que a data de fim!");
+
+        const acaoTexto = acao === 'bloquear' ? "BLOQUEAR TOTALMENTE" : "LIBERAR";
+        if (!confirm(`Deseja ${acaoTexto} a agenda de ${barbeiro} no período de ${dataInicio.split('-').reverse().join('/')} até ${dataFim.split('-').reverse().join('/')}?`)) return;
+
+        const btn = event.target.closest('button');
+        const textoOriginal = btn.innerHTML;
+        btn.innerText = "PROCESSANDO...";
+        btn.disabled = true;
+
+        let datasParaProcessar = [];
+        let dataAtual = new Date(dataInicio + "T12:00:00");
+        let dataFinal = new Date(dataFim + "T12:00:00");
+
+        while (dataAtual <= dataFinal) {
+            datasParaProcessar.push(dataAtual.toISOString().split('T')[0]);
+            dataAtual.setDate(dataAtual.getDate() + 1);
+        }
+
+        try {
+            if (acao === 'bloquear') {
+                const horarios = ["08:00","09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00"];
+                
+                for (let data of datasParaProcessar) {
+                    for (let hora of horarios) {
+                        await fetch(`${API_URL}/agendamentos`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                client_slug: CLIENT_SLUG,
+                                nome: "🚫 INDISPONÍVEL",
+                                whatsapp: "00000000000",
+                                servico: "BLOQUEIO ADMINISTRATIVO",
+                                profissional: barbeiro,
+                                data: data,
+                                horario: hora,
+                                valor: 0,
+                                status: "Bloqueado"
+                            })
+                        });
+                    }
+                }
+                alert(`✅ Agenda de ${barbeiro} bloqueada com sucesso!`);
+            } else {
+                // Shark, busca limpa na API para garantir a exclusão total
+                const resGeral = await fetch(`${API_URL}/agendamentos?client_slug=${CLIENT_SLUG}&t=${Date.now()}`);
+                const todosDados = await resGeral.json();
+                const listaGeral = Array.isArray(todosDados) ? todosDados : (todosDados.results || []);
+
+                const paraDeletar = listaGeral.filter(a => 
+                    a.profissional === barbeiro && 
+                    datasParaProcessar.includes(a.data)
+                );
+
+                if (paraDeletar.length === 0) {
+                    alert("ℹ️ Shark, nenhum bloqueio ou agendamento encontrado para este período.");
+                } else {
+                    for (let item of paraDeletar) {
+                        await fetch(`${API_URL}/agendamentos?id=${item.id}`, {
+                            method: "DELETE"
+                        });
+                    }
+                    alert(`✅ Período liberado! ${paraDeletar.length} registros de ${barbeiro} foram removidos.`);
+                }
+            }
+            
+            await carregarAgendamentos();
+        } catch (e) {
+            console.error("Erro no processamento:", e);
+            alert("Erro ao comunicar com o servidor. Tente novamente.");
+        } finally {
+            btn.innerHTML = textoOriginal;
+            btn.disabled = false;
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>

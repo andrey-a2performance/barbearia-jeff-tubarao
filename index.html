@@ -1,0 +1,2108 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="logo01.jpeg" />
+
+    <title>Barbearia Jeff Braga | Cortes e Barba em Tubarão - SC</title>
+
+    <meta
+      name="description"
+      content="Barbearia Jeff em Tubarão, SC. Especialista em cortes masculinos modernos, barba lenhador e barboterapia. Agende seu horário online!"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://barbearia-jeff-tubarao.pages.dev/"
+    />
+    <meta
+      property="og:title"
+      content="Barbearia Jeff Braga | Especialista em Barboterapia"
+    />
+    <meta
+      property="og:description"
+      content="Nesta cadeira senta um cliente, levanta um amigo. Clique para agendar seu horário."
+    />
+    <meta
+      property="og:image"
+      content="https://barbearia-jeff-tubarao.pages.dev/logo.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="theme-color" content="#c5a059" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://npmcdn.com/flatpickr/dist/themes/dark.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+
+    <style>
+      /* ELIMINADO DEGRADÊ - AGORA TUDO VERMELHO JEFF */
+      .text-gradient-barber, 
+      .text-gradient-stone, 
+      .text-gradient-leather {
+        color: #b91c1c !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        display: inline-block;
+      }
+
+      /* OPÇÃO 01: OURO PARA PEDRA CINZENTA (Pegada Industrial) */
+      .text-gradient-stone {
+        background: linear-gradient(to right, #c5a059, #6b7280);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+      }
+
+      /* OPÇÃO 02: OURO PARA COURO ENVELHECIDO (Pegada Rústica/Luxo) */
+      .text-gradient-leather {
+        background: linear-gradient(to right, #c5a059, #5c3d2e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+      }
+
+      /* Variáveis de Identidade - Barbearia Jeff */
+      :root {
+        --primary: #c5a059; /* Dourado Ouro Velho */
+        --secondary: #b91c1c; /* Vermelho Logo (Principal Ação) */
+        --bg-dark: #0a0a0a; /* Preto Profundo */
+        --text-light: #f3f4f6;
+      }
+
+      /* ÍCONES COM O VERMELHO DA BARBEARIA */
+      .text-gold {
+        color: var(--primary);
+      }
+      .text-red {
+        color: var(--secondary);
+      } /* Nova classe para ícones vermelhos */
+
+      /* BOTÃO DE AGENDAMENTO (AGORA BEM VERMELHO) */
+      .btn-agendar {
+        background-color: var(--secondary);
+        color: white;
+        font-family: "Bebas Neue", cursive;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border: 1px solid var(--primary); /* Borda em ouro para manter o luxo */
+        transition: all 0.3s ease;
+      }
+
+      .btn-agendar:hover {
+        background-color: rgb(0, 0, 0);
+        color: #3b82f6 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(185, 28, 28, 0.4);
+      }
+
+      /* DETALHES DE SEÇÃO */
+      .divider-red {
+        height: 2px;
+        width: 60px;
+        background-color: var(--secondary);
+        margin: 10px auto;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        overflow-x: hidden;
+      }
+
+      /* Títulos Imponentes com Bebas Neue */
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-titulo,
+      .serif-font {
+        font-family: "Bebas Neue", cursive;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: var(--primary) !important;
+      }
+
+      /* Fundo Industrial Fixo (Escurecido para destacar o Ouro) */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)),
+          url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1470");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .glass-dark {
+        background: var(--bg-card);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(197, 160, 89, 0.1); /* Borda em ouro sutil */
+      }
+
+      .border-gold {
+        border-color: var(--primary);
+      }
+      .text-gold {
+        color: var(--primary);
+      }
+      .bg-gold {
+        background-color: var(--primary);
+      }
+      .text-red {
+        color: var(--secondary);
+      }
+
+      /* Botão Premium (Preto e Ouro) */
+      .btn-premium {
+        background: linear-gradient(135deg, #111, #222);
+        border: 1px solid #333;
+        color: var(--text-light);
+        transition: all 0.4s ease;
+        font-family: "Bebas Neue", cursive;
+        letter-spacing: 1px;
+      }
+
+      .btn-premium:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+      }
+
+      /* BOTÃO PADRÃO SHARK - UNIFORME E CENTRALIZADO */
+      .btn-universal {
+        display: inline-block;
+        min-width: 320px; /* Garante que ambos tenham a mesma largura mínima */
+        background-color: #b91c1c; /* Vermelho Ação */
+        color: #fff;
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.25rem; /* text-xl */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 20px 0; /* py-5 */
+        border-radius: 4px;
+        border: 1px solid rgba(197, 160, 89, 0.3); /* Borda Ouro Sutil */
+        transition: all 0.5s ease;
+        text-align: center;
+      }
+
+      .btn-universal:hover {
+        background-color: #000 !important;
+        color: #3b82f6 !important; /* Letra Azul no Hover */
+        border-color: #3b82f6 !important;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        transform: translateY(-3px);
+      }
+
+      /* BOTÃO PADRÃO RITUAL - ARREDONDADO E ROBUSTO */
+      .btn-ritual-master {
+        display: inline-block;
+        min-width: 320px; /* Largura padrão para ambos */
+        background-color: #b91c1c; /* Vermelho Ação */
+        color: #fff;
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.25rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 20px 40px;
+        border-radius: 0.75rem; /* rounded-xl: IGUAL ao Solicitar Agendamento */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.5s ease;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .btn-ritual-master:hover {
+        background-color: #000 !important;
+        color: #3b82f6 !important; /* Letra Azul no Hover que você curtiu */
+        border-color: #3b82f6 !important;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        transform: translateY(-3px);
+      }
+
+      /* Ícones de Data/Hora em Ouro */
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(70%) sepia(50%) saturate(400%) hue-rotate(10deg)
+          brightness(90%) contrast(90%);
+        cursor: pointer;
+      }
+
+      /* Calendário Flatpickr Customizado */
+      .flatpickr-calendar {
+        background: #111 !important;
+        border: 1px solid var(--primary) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+      }
+      .flatpickr-day.selected {
+        background: var(--primary) !important;
+        border-color: var(--primary) !important;
+        color: #000 !important;
+      }
+
+      /* Garante que o carrossel exiba um ao lado do outro */
+      #feedbacks-container {
+        display: flex;
+        flex-direction: row !important;
+      }
+      #feedbacks-container .swiper-slide {
+        height: auto;
+      }
+
+      .flatpickr-current-month .flatpickr-monthDropdown-months {
+        color: var(--primary) !important;
+      }
+
+      /* BOTÃO AGENDAR MOBILE (DESTAQUE EM VERMELHO E OURO) */
+      @media (max-width: 768px) {
+        .agendar-mobile-destaque {
+          background: var(
+            --secondary
+          ) !important; /* Vermelho para urgência/ação */
+          color: #fff !important;
+          border: 2px solid var(--primary) !important; /* Borda dourada para luxo */
+          font-family: "Bebas Neue", cursive !important;
+          font-weight: normal !important;
+          padding: 20px 30px !important;
+          font-size: 1.4rem !important;
+          border-radius: 8px !important;
+          box-shadow: 0 0 30px rgba(185, 28, 28, 0.4);
+          display: block;
+          width: 90%;
+          margin: 15px auto;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          animation: pulse-red-gold 2s infinite;
+        }
+
+        #mobileMenu {
+          padding-top: 80px;
+          background: linear-gradient(to bottom, #000, #111);
+        }
+
+        .mobile-link {
+          font-family: "Bebas Neue", cursive;
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          color: var(--text-light);
+          border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+          padding-bottom: 15px;
+          width: 80%;
+          text-align: center;
+        }
+      }
+
+      /* Efeito de Pulsação (Vermelho com Brilho Ouro) */
+      @keyframes pulse-red-gold {
+        0% {
+          box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(197, 160, 89, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(185, 28, 28, 0);
+        }
+      }
+
+      /* Utilitários */
+      /* Shark, efeito de brilho para avisar que o campo é clicável */
+      .click-helper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .info-dot {
+        width: 14px;
+        height: 14px;
+        background: rgba(197, 160, 89, 0.2);
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        border-radius: 50%;
+        font-size: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse-gold 2s infinite;
+      }
+      @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+      }
+
+
+      body.menu-open .instagram-float-btn,
+      body.menu-open .whatsapp-float-btn {
+        display: none !important;
+      }
+
+      /* Cards de Feedback Compactos e Quadrados */
+      .feedback-card {
+        height: 180px !important; /* Altura travada para ficar quase quadrado */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      .feedback-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Mostra apenas 3 linhas de texto */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.8rem;
+        color: #ccc;
+      }
+      /* Estilo do Modal (Janela que abre) */
+      .modal-feedback {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0,0,0,0.9);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+
+    </style>
+  </head>
+  <body class="antialiased">
+    <div id="modalFeedback" class="modal-feedback" onclick="this.style.display='none'">
+      <div class="glass-dark p-8 rounded-2xl border border-gold/30 max-w-lg w-full" onclick="event.stopPropagation()">
+        <div id="modalStars" class="text-gold mb-4"></div>
+        <p id="modalFullText" class="text-white italic mb-6 leading-relaxed"></p>
+        <div class="flex items-center gap-4">
+          <div id="modalInitials" class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center text-gold font-bold"></div>
+          <span id="modalAuthor" class="text-white font-bold uppercase tracking-widest text-xs"></span>
+        </div>
+        <button class="mt-8 text-gold text-[10px] uppercase tracking-widest border-b border-gold/30" onclick="document.getElementById('modalFeedback').style.display='none'">Fechar</button>
+      </div>
+    </div>
+    <header class="fixed w-full z-50 glass-dark border-b border-white/5">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="group flex flex-col items-start gap-0">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-20 h-20 bg-black border-2 border-gray-800 rounded-xl flex items-center justify-center text-[#c5a059] text-sm font-bold font-titulo italic group-hover:border-[#c5a059] transition-all duration-500 shadow-lg"
+            >
+             <img src="logo01.jpeg" class="w-full h-full rounded-xl object-cover">
+            </div>
+            <span
+              class="text-xl font-titulo uppercase tracking-wider leading-none"
+            >
+              <span class="text-gradient-barber">Barbearia Jeff Braga</span>
+            </span>
+          </div>
+
+          <div
+            class="ml-[52px] flex gap-1 text-[10px] text-[#c5a059] mt-0.5 opacity-90"
+          >
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </a>
+
+        <nav
+          class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]"
+        >
+          <a
+            href="#experiencia"
+            class="text-white hover:text-[#c5a059] transition-colors"
+            >Experiência</a
+          >
+          <a
+            href="#servicos"
+            class="text-white hover:text-[#c5a059] transition-colors"
+            >Serviços</a
+          >
+          <a
+            href="#feedback"
+            class="text-white hover:text-[#c5a059] transition-colors"
+            >Feedbacks</a
+          >
+          <a
+            href="#agendar"
+            class="bg-[#b91c1c] text-white border border-[#c5a059]/30 px-6 py-2 rounded-sm hover:bg-[#000] hover:text-[#3b82f6] hover:border-[#3b82f6] transition-all duration-300"
+          >
+            Agendar
+          </a>
+        </nav>
+
+        <button
+          onclick="toggleMenu()"
+          class="md:hidden text-white text-2xl focus:outline-none ml-4"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav
+      id="mobileMenu"
+      class="fixed inset-0 z-[100] flex justify-end invisible transition-all duration-300"
+    >
+      <div
+        id="menuOverlay"
+        onclick="toggleMenu()"
+        class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+      ></div>
+
+      <div
+        id="menuSide"
+        class="relative w-72 h-full bg-[#0a0a0a]/95 border-l border-[#c5a059]/20 p-8 flex flex-col space-y-8 translate-x-full transition-transform duration-300 shadow-2xl"
+      >
+        <button
+          onclick="toggleMenu()"
+          class="self-end text-[#c5a059] hover:text-white transition-colors"
+        >
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+
+        <div
+          class="flex flex-col space-y-6 text-sm font-bold uppercase tracking-widest"
+        >
+          <a
+            href="#experiencia"
+            onclick="toggleMenu()"
+            class="text-white hover:text-[#c5a059] transition-colors font-titulo italic"
+            >Experiência</a
+          >
+          <a
+            href="#servicos"
+            onclick="toggleMenu()"
+            class="text-white hover:text-[#c5a059] transition-colors font-titulo italic"
+            >Serviços</a
+          >
+          <a
+            href="#feedback"
+            onclick="toggleMenu()"
+            class="text-white hover:text-[#c5a059] transition-colors font-titulo italic"
+            >Feedbacks</a
+          >
+          <a
+            href="#agendar"
+            onclick="toggleMenu()"
+            class="text-[#c5a059] pt-4 border-t border-white/10 font-titulo italic"
+            >Agendar Agora</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div
+      style="
+        background: #000;
+        border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        padding: 8px 5%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      "
+    >
+      <a
+        href="https://www.instagram.com/barbeariajeffbraga"
+        target="_blank"
+        style="
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: 0.3s;
+        "
+        onmouseover="this.style.opacity = '0.8'"
+        onmouseout="this.style.opacity = '1'"
+      >
+        <span
+          style="
+            color: #888;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 400;
+          "
+        >
+          Acompanhe nosso trabalho:
+        </span>
+
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--gold);
+          "
+        >
+          <i class="fab fa-instagram" style="font-size: 0.8rem"></i>
+          <span
+            style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px"
+            >@barbeariajeffbraga</span
+          >
+        </div>
+      </a>
+    </div>
+
+    <section
+      class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
+    >
+      <div class="max-w-4xl text-center z-10 w-full">
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+          "
+        >
+          <a
+            href="https://www.instagram.com/barbeariajeffbraga"
+            target="_blank"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              background: transparent;
+              border: 1px solid var(--gold);
+              color: var(--gold);
+              padding: 8px 16px;
+              border-radius: 30px;
+              text-decoration: none;
+              transition: 0.3s;
+            "
+            onmouseover="
+              this.style.background = 'var(--gold)';
+              this.style.color = '#000';
+            "
+            onmouseout="
+              this.style.background = 'transparent';
+              this.style.color = 'var(--gold)';
+            "
+          >
+            <i class="fab fa-instagram" style="font-size: 1rem"></i>
+            <span
+              style="
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+              "
+            >
+              Siga no Instagram
+            </span>
+          </a>
+        </div>
+
+        <span
+          class="text-gold font-bold uppercase tracking-[0.4em] text-[10px] mb-4 block"
+        >
+          Especialista em Barboterapia • Tubarão
+        </span>
+
+        <div class="text-center py-12 px-4">
+          <h2
+            class="text-5xl md:text-8xl font-titulo leading-none tracking-tighter"
+          >
+            <span class="text-gradient-leather"
+              >Onde o Estilo Encontra o Ritual.</span
+            >
+          </h2>
+          <div class="w-32 h-[1px] bg-[#c5a059]/30 mx-auto mt-6"></div>
+        </div>
+        <p
+          class="text-gray-400 mt-8 text-sm md:text-lg max-w-xl mx-auto leading-relaxed"
+        >
+          Muito mais que um corte. Toalha quente, café gourmet e a tradição das
+          clássicas barbearias com o conforto da modernidade.
+        </p>
+        <div
+          class="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center"
+        >
+          <a
+            href="#agendar"
+            class="w-full sm:w-80 bg-[#c5a059] text-black py-5 rounded-sm font-bold uppercase text-[10px] tracking-[0.3em] shadow-2xl hover:bg-white transition duration-500 text-center"
+          >
+            Garantir meu Horário
+          </a>
+
+          <a
+            href="https://www.instagram.com/barbeariajeffbraga?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            class="w-full sm:w-80 border border-white/20 text-white py-5 rounded-sm font-bold uppercase text-[10px] tracking-[0.3em] flex items-center justify-center gap-2 hover:bg-white/10 transition duration-500 text-center"
+          >
+            <i class="fab fa-instagram"></i> Ver Estilo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="sobre"
+      class="py-20 px-6 bg-[#050505] relative border-b border-white/5"
+    >
+      <div class="container mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+          <div
+            class="relative group h-96 w-full rounded-sm overflow-hidden border border-gold/20 shadow-2xl order-2 md:order-1"
+          >
+            <img
+              src="img04.jpg.jpeg"
+              alt="Jeff Braga Fundador"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+            <div
+              class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6"
+            >
+              <p
+                class="text-gold text-[10px] font-bold uppercase tracking-widest"
+              >
+                Fundador
+              </p>
+              <p class="text-white serif-font italic text-lg">Jeff Braga</p>
+            </div>
+          </div>
+
+          <div class="text-center space-y-6 order-1 md:order-2 px-4">
+            <div class="flex justify-center items-center gap-4 mb-2">
+              <div class="h-[1px] w-8 bg-blue-700"></div>
+              <span
+                class="text-blue-600 font-bold tracking-[0.3em] text-[10px] uppercase"
+                >Desde 14 Junho 2012</span
+              >
+              <div class="h-[1px] w-8 bg-blue-700"></div>
+            </div>
+
+            <h2 class="text-4xl md:text-6xl font-titulo leading-none">
+              <span class="text-gradient-barber"
+                >MUITO ALÉM DE UM CORTE,<br />UM RITUAL DE RESPEITO.</span
+              >
+            </h2>
+
+            <div class="max-w-xl mx-auto">
+              <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                Na
+                <span class="text-gradient-barber font-bold"
+                  >Barbearia Jeff Braga</span
+                >, resgatamos a essência clássica da navalha com a precisão da
+                barbearia moderna. Localizada em um ambiente industrial
+                exclusivo, cada detalhe foi pensado para elevar a sua imagem e
+                renovar a sua confiança.
+              </p>
+            </div>
+
+            <div class="flex justify-center pt-4">
+              <div
+                class="p-3 rounded-full border border-[#c5a059]/20 bg-[#c5a059]/5"
+              >
+                <i class="fas fa-scissors text-[#c5a059] text-lg"></i>
+              </div>
+            </div>
+
+            <div class="pt-10 text-center">
+              <a href="#agendar" class="btn-ritual-master">
+                Quero viver essa experiência
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="relative group h-96 w-full rounded-sm overflow-hidden border border-gold/20 shadow-2xl order-3"
+          >
+            <img
+              src="img06.jpg.jpeg"
+              alt="Equipe Jeff Barber"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+            <div
+              class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6"
+            >
+              <p
+                class="text-gold text-[10px] font-bold uppercase tracking-widest"
+              >
+                Nosso Time
+              </p>
+              <p class="text-white serif-font italic text-lg">
+                Excelência 5 Estrelas
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="py-24 px-6 bg-black/40">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-20">
+          <span
+            class="text-gold font-bold uppercase tracking-[0.3em] text-[10px]"
+            >Ritual & Conforto</span
+          >
+          <h2
+            class="text-3xl md:text-5xl font-bold serif-font italic mt-2 text-white"
+          >
+            Deixe-nos cuidar de você
+          </h2>
+          <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div
+            class="group p-8 glass-dark rounded-xl border border-white/5 hover:border-gold/30 transition-all duration-500"
+          >
+            <div
+              class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8 text-gold group-hover:scale-110 transition"
+            >
+              <i class="fas fa-hot-tub text-2xl"></i>
+            </div>
+            <h3 class="serif-font italic text-2xl mb-4 text-white">
+              Barboterapia
+            </h3>
+            <p
+              class="text-xs text-gray-400 leading-relaxed uppercase tracking-widest"
+            >
+              Ritual com toalha quente, óleos essenciais e massagem para um
+              relaxamento profundo.
+            </p>
+          </div>
+
+          <div
+            class="group p-8 glass-dark rounded-xl border border-white/5 hover:border-gold/30 transition-all duration-500"
+          >
+            <div
+              class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8 text-gold group-hover:scale-110 transition"
+            >
+              <i class="fas fa-beer text-2xl"></i>
+            </div>
+            <h3 class="serif-font italic text-2xl mb-4 text-white">
+              Lounge & Bar
+            </h3>
+            <p
+              class="text-xs text-gray-400 leading-relaxed uppercase tracking-widest"
+            >
+              Ambiente climatizado com café gourmet e bebidas geladas. O seu
+              refúgio em Tubarão.
+            </p>
+          </div>
+
+          <div
+            class="group p-8 glass-dark rounded-xl border border-white/5 hover:border-gold/30 transition-all duration-500"
+          >
+            <div
+              class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8 text-gold group-hover:scale-110 transition"
+            >
+              <i class="fas fa-motorcycle text-2xl"></i>
+            </div>
+            <h3 class="serif-font italic text-2xl mb-4 text-white">
+              Custom Style
+            </h3>
+            <p
+              class="text-xs text-gray-400 leading-relaxed uppercase tracking-widest"
+            >
+              Do corte clássico ao estilo lenhador. Atendimento personalizado
+              para todas as idades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" class="py-24 px-6 relative">
+      <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto mb-20">
+          <div class="text-center mb-10">
+            <h3 class="text-3xl md:text-5xl font-titulo mb-4">
+              <span class="text-gradient-leather">ESTILO QUE INSPIRA</span>
+            </h3>
+            <div class="flex justify-center gap-1 mb-4">
+              <div class="h-[2px] w-10 bg-white"></div>
+              <div class="h-[2px] w-10 bg-[#b91c1c]"></div>
+              <div class="h-[2px] w-10 bg-[#1e40af]"></div>
+            </div>
+          </div>
+
+          <div
+            class="glass-dark p-2 md:p-6 rounded-3xl border border-white/5 shadow-2xl"
+          >
+            <div class="swiper galeriaSwiper rounded-2xl overflow-hidden">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1470"
+                    class="w-full h-[450px] object-cover"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=1470"
+                    class="w-full h-[450px] object-cover"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1470"
+                    class="w-full h-[450px] object-cover"
+                  />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full">
+          <div class="text-center mb-12">
+            <h3 class="text-3xl md:text-5xl font-titulo mb-2">
+              <span class="text-gradient-barber">TABELA DE SERVIÇOS</span>
+            </h3>
+            <div class="flex justify-center gap-1 mb-4">
+              <div class="h-[2px] w-12 bg-white"></div>
+              <div class="h-[2px] w-12 bg-[#b91c1c]"></div>
+              <div class="h-[2px] w-12 bg-[#1e40af]"></div>
+            </div>
+          </div>
+
+          <div
+            class="glass-dark p-8 md:p-16 rounded-3xl border border-white/10 shadow-2xl relative"
+          >
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <div class="space-y-6">
+                <h5 class="text-gold font-bold text-[10px] uppercase tracking-widest border-l-2 border-gold pl-3 mb-6">Equipe Elite</h5>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Corte Mensal</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 70</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Barba Mensal</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 50</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Recorte Cabelo</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 40</span>
+                </div>
+              </div>
+
+              <div class="space-y-6 bg-white/5 p-6 rounded-2xl border border-gold/20 shadow-xl">
+                <h5 class="text-gold font-bold text-[10px] uppercase tracking-widest border-l-2 border-gold pl-3 mb-6">Premium Jeff Braga</h5>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Corte Mensal</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 80</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Barba Mensal</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 55</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-white/5 pb-3">
+                  <div><h4 class="text-lg font-titulo text-white">Combo Jeff</h4></div>
+                  <span class="text-gold font-titulo text-xl">R$ 130</span>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <h5 class="text-blue-500 font-bold text-[10px] uppercase tracking-widest border-l-2 border-blue-500 pl-3 mb-6">Estética & Química</h5>
+                
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Progressiva', 'É um método de alisar o cabelo através do formol e queratina. Realizado exclusivamente por Thiago Teixeira.')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Progressiva <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[8px] text-gray-500">Exclusivo Thiago • Toque para detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 130</span>
+                </div>
+
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Matização Cabelo', 'Procedimento para neutralizar reflexos amarelados. Cabelo Curto (R$ 70) | Cabelo Longo (R$ 100).')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Matização Cabelo <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[10px] text-gray-400">Curto R$ 70 | Longo R$ 100 • Detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 70+</span>
+                </div>
+
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Matização Barba', 'Neutraliza reflexos indesejados nos fios da barba.')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Matização Barba <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[8px] text-gray-500">Toque para detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 35</span>
+                </div>
+
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Design Sobrancelha', 'Alinhamento dos pelos com a harmonização do rosto.')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Design Sobrancelha <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[8px] text-gray-500">Toque para detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 25</span>
+                </div>
+
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Depilação Nasal', 'Depilação de nariz com cera. Pelos crescem mais finos e demoram mais.')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Depilação Nasal <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[8px] text-gray-500">Toque para detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 25</span>
+                </div>
+
+                <div class="flex justify-between items-end border-b border-white/5 pb-3 cursor-help group" onclick="abrirModalServico('Depilação Ouvido', 'Depilação de ouvido com cera. Pelos crescem mais finos e demoram mais.')">
+                  <div>
+                    <h4 class="text-lg font-titulo text-white group-hover:text-gold transition click-helper">
+                      Depilação Ouvido <span class="info-dot"><i class="fas fa-info"></i></span>
+                    </h4>
+                    <p class="text-[8px] text-gray-500">Toque para detalhes</p>
+                  </div>
+                  <span class="text-gold font-titulo text-xl">R$ 25</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-16 text-center">
+              <a href="#agendar" class="btn-ritual-master">
+                Agendar meu Horário
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="py-24 px-6 bg-black/80 relative">
+      <div class="container mx-auto max-w-7xl">
+        <div class="text-center mb-12">
+          <span
+            class="text-gold font-bold uppercase tracking-[0.3em] text-[10px]"
+            >Nosso Instagram</span
+          >
+          <h2
+            class="text-3xl md:text-5xl font-bold serif-font italic mt-2 text-white"
+          >
+            Siga a @barbeariajeffbraga
+          </h2>
+          <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a
+            href="https://www.instagram.com/reel/DE8L5RAvBBF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            class="relative group block overflow-hidden rounded-sm border border-white/10 hover:border-gold transition duration-500 aspect-[9/16]"
+          >
+            <img
+              src="001.jpg"
+              alt="Instagram Reel 1"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+
+            <div
+              class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500 flex items-center justify-center"
+            >
+              <div
+                class="w-16 h-16 bg-gold/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)] group-hover:scale-110 group-hover:bg-gold transition duration-300"
+              >
+                <i class="fas fa-play text-black text-xl pl-1"></i>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.instagram.com/reel/DF0N-eAx7wW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            class="relative group block overflow-hidden rounded-sm border border-white/10 hover:border-gold transition duration-500 aspect-[9/16]"
+          >
+            <img
+              src="002.jpg"
+              alt="Instagram Reel 2"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+
+            <div
+              class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500 flex items-center justify-center"
+            >
+              <div
+                class="w-16 h-16 bg-gold/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)] group-hover:scale-110 group-hover:bg-gold transition duration-300"
+              >
+                <i class="fas fa-play text-black text-xl pl-1"></i>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.instagram.com/reel/DOOk71dAJye/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            class="relative group block overflow-hidden rounded-sm border border-white/10 hover:border-gold transition duration-500 aspect-[9/16]"
+          >
+            <img
+              src="003.jpg"
+              alt="Instagram Reel 3"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+
+            <div
+              class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500 flex items-center justify-center"
+            >
+              <div
+                class="w-16 h-16 bg-gold/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)] group-hover:scale-110 group-hover:bg-gold transition duration-300"
+              >
+                <i class="fas fa-play text-black text-xl pl-1"></i>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.instagram.com/reel/DHOip8RuLJt/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            class="relative group block overflow-hidden rounded-sm border border-white/10 hover:border-gold transition duration-500 aspect-[9/16]"
+          >
+            <img
+              src="004.jpg"
+              alt="Instagram Reel 4"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+            />
+
+            <div
+              class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500 flex items-center justify-center"
+            >
+              <div
+                class="w-16 h-16 bg-gold/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.5)] group-hover:scale-110 group-hover:bg-gold transition duration-300"
+              >
+                <i class="fas fa-play text-black text-xl pl-1"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="https://www.instagram.com/barbeariajeffbraga?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            class="text-white hover:text-gold text-[10px] uppercase tracking-[0.3em] transition border-b border-gold/30 pb-1 hover:border-gold"
+          >
+            Ver perfil completo <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="agendar" class="py-24 px-6 relative">
+      <div class="container mx-auto max-w-4xl">
+        <div
+          class="glass-dark p-8 md:p-16 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden"
+        >
+          <div class="absolute top-0 left-0 w-full h-1.5 flex">
+            <div class="flex-1 bg-[#f3f4f6]"></div>
+            <div class="flex-1 bg-[#b91c1c]"></div>
+            <div class="flex-1 bg-[#1e40af]"></div>
+          </div>
+
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-6xl font-titulo leading-tight">
+              <span class="text-gradient-barber">RESERVE SEU MOMENTO</span>
+            </h2>
+            <p
+              class="text-gray-400 text-[10px] uppercase tracking-[0.4em] mt-4 font-bold"
+            >
+              Verificaremos a
+              <span class="text-[#1e40af]">disponibilidade</span> em instantes
+            </p>
+            <div
+              class="w-20 h-[2px] bg-[#c5a059] mx-auto mt-6 opacity-50"
+            ></div>
+          </div>
+
+          <form id="barberForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="col-span-1 md:col-span-2">
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Seu Nome Completo</label
+              >
+              <input
+                type="text"
+                id="nome"
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#c5a059] focus:bg-black/60 transition-all text-white placeholder-gray-600"
+                placeholder="Ex: Andrey Santos"
+                required
+              />
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Selecione o Profissional</label
+              >
+              <select
+                id="profissional"
+                required
+                onchange="filtrarServicosPorBarbeiro()"
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#1e40af] transition-all text-white uppercase text-[11px] tracking-wider cursor-pointer"
+              >
+                <option value="" disabled selected class="bg-[#0a0a0a]">Escolha o barbeiro</option>
+                <option value="Jeff Braga" class="bg-[#0a0a0a]">Jeff - Jeferson</option>
+                <option value="Thiago Teixeira" class="bg-[#0a0a0a]">Thiago Teixeira</option>
+                <option value="Léo - Leonardo" class="bg-[#0a0a0a]">Léo - Leonardo</option>
+                <option value="Ayrton" class="bg-[#0a0a0a]">Ayrton</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Serviço Desejado</label
+              >
+            <select
+                id="servico"
+                required
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#c5a059] transition-all text-white uppercase text-[11px] tracking-wider cursor-pointer"
+              >
+                <option value="" disabled selected class="bg-[#0a0a0a]">Selecione o Ritual</option>
+                
+                <optgroup label="Cabelo & Barba (Equipe)" class="bg-[#0a0a0a]">
+                  <option value="Corte Mensal" data-preco="70">Corte Mensal - R$ 70,00</option>
+                  <option value="Barba Mensal" data-preco="50">Barba Mensal - R$ 50,00</option>
+                  <option value="Cabelo e Barba Mensal" data-preco="120">Cabelo e Barba - R$ 120,00</option>
+                  <option value="Recorte Cabelo" data-preco="40">Recorte Cabelo - R$ 40,00</option>
+                  <option value="Recorte Barba" data-preco="30">Recorte Barba - R$ 30,00</option>
+                </optgroup>
+
+                <optgroup label="Premium Jeff Braga" class="bg-[#0a0a0a]">
+                  <option value="Corte Mensal Jeff" data-preco="80">Corte Mensal Jeff - R$ 80,00</option>
+                  <option value="Barba Mensal Jeff" data-preco="55">Barba Mensal Jeff - R$ 55,00</option>
+                  <option value="Cabelo e Barba Mensal Jeff" data-preco="130">Cabelo e Barba Jeff - R$ 130,00</option>
+                </optgroup>
+
+                <optgroup label="Estética & Química" class="bg-[#0a0a0a]">
+                  <option value="Progressiva" data-preco="130">Progressiva (Thiago) - R$ 130,00</option>
+                  <option value="Matização Cabelo" data-preco="70">Matização Cabelo (Curto/Longo) - R$ 70,00+</option>
+                  <option value="Matização Barba" data-preco="35">Matização Barba - R$ 35,00</option>
+                  <option value="Design Sobrancelha" data-preco="25">Design Sobrancelha - R$ 25,00</option>
+                  <option value="Depilação Nasal" data-preco="25">Depilação Nasal - R$ 25,00</option>
+                  <option value="Depilação Ouvido" data-preco="25">Depilação Ouvido - R$ 25,00</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Estilo Sugerido</label
+              >
+              <select
+                id="estilo"
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#c5a059] transition-all text-white uppercase text-[11px] tracking-wider cursor-pointer"
+              >
+                <option value="Clássico" class="bg-[#0a0a0a]">
+                  Visual Clássico
+                </option>
+                <option value="Moderno/Degrade" class="bg-[#0a0a0a]">
+                  Degradê / Moderno
+                </option>
+                <option value="Lenhador" class="bg-[#0a0a0a]">
+                  Barba Lenhador
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Data</label
+              >
+              <input
+                type="text"
+                id="data"
+                readonly
+                required
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#1e40af] transition-all text-white uppercase text-[11px] cursor-pointer"
+                placeholder="Selecione o dia"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#c5a059] mb-3"
+                >Horário</label
+              >
+              <select
+                id="hora"
+                required
+                class="w-full bg-black/40 border border-white/5 p-4 rounded-xl outline-none focus:border-[#1e40af] transition-all text-white uppercase text-[11px] cursor-pointer"
+              >
+                <option value="" disabled selected class="bg-[#0a0a0a]">
+                  Aguardando data...
+                </option>
+              </select>
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+              <label
+                class="block text-[10px] font-bold uppercase tracking-widest text-[#1e40af] mb-3"
+                >Cortesia de Boas-vindas</label
+              >
+              <select
+                id="mimo"
+                class="w-full bg-black/40 border border-[#1e40af]/20 p-4 rounded-xl outline-none focus:border-[#1e40af] transition-all text-white uppercase text-[11px] tracking-wider"
+              >
+                <option value="Café Gourmet" class="bg-[#0a0a0a]">
+                  ☕ Café Gourmet
+                </option>
+                <option value="Cerveja/Bebida Gelada" class="bg-[#0a0a0a]">
+                  🍺 Cerveja ou Bebida Gelada
+                </option>
+                <option value="Água/Suco" class="bg-[#0a0a0a]">
+                  🥤 Água ou Suco
+                </option>
+                <option value="Nenhuma" class="bg-[#0a0a0a]">
+                  Apenas o serviço.
+                </option>
+              </select>
+            </div>
+
+            <div class="col-span-1 md:col-span-2 pt-6">
+              <button
+                type="submit"
+                class="btn-ritual-master w-full !min-width-full shadow-2xl shadow-red-950/20"
+              >
+                SOLICITAR AGENDAMENTO
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="py-24 px-6 bg-black/60 overflow-hidden">
+      <div class="container mx-auto max-w-6xl text-center">
+        <span class="text-gold font-bold uppercase tracking-[0.3em] text-[10px]"
+          >O que dizem nossos clientes</span
+        >
+        <h2
+          class="text-3xl md:text-5xl font-bold serif-font italic mt-2 text-white"
+        >
+          Referência em Estilo
+        </h2>
+        <div class="w-16 h-0.5 bg-gold mx-auto mt-6 mb-16"></div>
+
+        <div class="swiper mySwiper pb-12 cursor-grab active:cursor-grabbing">
+          <div class="swiper-wrapper" id="feedbacks-container"></div>
+          <div class="swiper-pagination mt-8"></div>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="https://www.instagram.com/barbeariajeffbraga"
+            target="_blank"
+            class="text-white text-[10px] font-bold uppercase tracking-[0.4em] hover:text-gold transition"
+          >
+            Siga nosso estilo no Instagram <i class="fab fa-instagram ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="avaliar"
+      class="py-20 px-6 relative border-t border-white/5 bg-gradient-to-b from-black to-[#0a0a0a]"
+    >
+      <div class="container mx-auto max-w-3xl text-center">
+        <div class="mb-10">
+          <span
+            class="text-[#c5a059] font-bold uppercase tracking-[0.3em] text-[10px]"
+            >Sua opinião importa</span
+          >
+          <h2
+            class="text-2xl md:text-4xl font-bold font-titulo italic mt-2 text-white"
+          >
+            Como foi sua experiência?
+          </h2>
+        </div>
+
+        <div
+          class="bg-[#0a0a0a] p-8 md:p-12 rounded-sm border border-[#c5a059]/20 shadow-2xl relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#c5a059]/10 blur-[50px] rounded-full pointer-events-none"
+          ></div>
+
+          <form id="feedbackForm" class="relative z-20">
+            <div class="flex justify-center gap-2 mb-8" id="starContainer">
+              <i
+                class="fas fa-star text-2xl cursor-pointer text-gray-700 hover:text-[#c5a059] transition duration-300 star-rating"
+                data-value="1"
+              ></i>
+              <i
+                class="fas fa-star text-2xl cursor-pointer text-gray-700 hover:text-[#c5a059] transition duration-300 star-rating"
+                data-value="2"
+              ></i>
+              <i
+                class="fas fa-star text-2xl cursor-pointer text-gray-700 hover:text-[#c5a059] transition duration-300 star-rating"
+                data-value="3"
+              ></i>
+              <i
+                class="fas fa-star text-2xl cursor-pointer text-gray-700 hover:text-[#c5a059] transition duration-300 star-rating"
+                data-value="4"
+              ></i>
+              <i
+                class="fas fa-star text-2xl cursor-pointer text-gray-700 hover:text-[#c5a059] transition duration-300 star-rating"
+                data-value="5"
+              ></i>
+            </div>
+            <input type="hidden" id="ratingValue" value="5" />
+
+            <div class="mb-6">
+              <input
+                type="text"
+                id="feedbackName"
+                placeholder="Seu Nome"
+                class="w-full bg-black/50 border border-white/10 p-4 rounded-sm outline-none focus:border-[#c5a059] transition text-white text-center placeholder-gray-600"
+                required
+              />
+            </div>
+
+            <div class="mb-8">
+              <textarea
+                id="feedbackMessage"
+                rows="3"
+                placeholder="Conte o que achou do corte, do ambiente ou do atendimento..."
+                class="w-full bg-black/50 border border-white/10 p-4 rounded-sm outline-none focus:border-[#c5a059] transition text-white text-center placeholder-gray-600 resize-none"
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-[#c5a059] text-black font-bold uppercase text-[10px] tracking-[0.3em] px-10 py-4 hover:bg-white transition duration-500 shadow-lg flex items-center gap-2 mx-auto"
+            >
+              Enviar Feedback <i class="fab fa-whatsapp"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <button
+      id="backToTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="fixed bottom-6 left-6 z-50 flex items-center justify-center w-12 h-12 bg-black/80 backdrop-blur-md border border-[#c5a059] rounded-full text-[#c5a059] opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-[#c5a059] hover:text-black shadow-lg"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <section class="py-8 px-4 bg-black border-t border-white/10">
+      <div class="container mx-auto max-w-7xl">
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img02.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img05.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img07.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img10.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img14.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-sm border border-white/10 group h-24 md:h-32 cursor-pointer"
+          >
+            <img
+              src="img04.jpg.jpeg"
+              alt="Detalhe"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition duration-500"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 glass-dark">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left"
+        >
+          <div class="space-y-6">
+            <h4 class="text-white serif-font italic text-2xl">
+              Barbearia Jeff Braga
+            </h4>
+            <p
+              class="text-gray-500 text-[10px] uppercase tracking-widest leading-relaxed"
+            >
+              O refúgio do homem moderno em Tubarão. Tradição, café e estilo
+              industrial em um só lugar.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <h4
+              class="text-gold text-[10px] font-bold uppercase tracking-widest"
+            >
+              Onde Estamos
+            </h4>
+            <p class="text-gray-400 text-xs italic">
+              <i class="fas fa-map-marker-alt text-gold mr-3"></i> Avenida
+              Marcolino Martins Cabral 2157<br />Tubarão - SC - 88705033
+            </p>
+            <p class="text-gray-400 text-xs italic">
+              <i class="fas fa-clock text-gold mr-3"></i> Seg a Sex: 09h - 20h |
+              Sáb: 08h - 17h
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <h4
+              class="text-gold text-[10px] font-bold uppercase tracking-widest"
+            >
+              Conecte-se
+            </h4>
+            <div class="flex justify-center md:justify-start gap-6 text-white">
+              <a
+                href="https://www.instagram.com/barbeariajeffbraga?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                class="hover:text-gold transition"
+                ><i class="fab fa-instagram text-xl"></i
+              ></a>
+              <a href="#" class="hover:text-gold transition"
+                ><i class="fab fa-whatsapp text-xl"></i
+              ></a>
+              <a href="#" class="hover:text-gold transition"
+                ><i class="fab fa-facebook text-xl"></i
+              ></a>
+            </div>
+            <p
+              class="text-[9px] uppercase tracking-widest text-gray-600 font-bold"
+            >
+              Desenvolvido por <span class="text-gold">A2 Shark Performance</span>
+            </p>
+
+            <div class="mt-6 pt-4 border-t border-white/5">
+              <a
+                href="login.html"
+                class="group inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-gold transition-all duration-300"
+              >
+                <div
+                  class="w-6 h-6 rounded-full border border-gold/30 flex items-center justify-center group-hover:border-gold transition-colors"
+                >
+                  <i class="fas fa-user-shield text-[8px] text-gold"></i>
+                </div>
+                Acesso Restrito A2 Management
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // --- CONFIGURAÇÃO MASTER A2 PERFORMANCE ---
+      const API_URL = "/api";
+      const TRACKER_URL = "https://a2-tracker.web-br.workers.dev";
+      const CLIENT_SLUG = "jeff-braga";
+      let agendaConfig = [];
+      let agendamentosGlobais = [];
+      let instanceFlatpickr; // Para podermos resetar o calendário
+
+      // 1. CARREGAMENTO DE DADOS (Agora com suporte a recarregamento automático)
+      // 1. CARREGAMENTO DE DADOS (COM PROTEÇÃO DE CACHE SHARK)
+      async function carregarDadosIniciais() {
+        try {
+          console.log("🔄 Buscando agenda para:", CLIENT_SLUG);
+          const [resAgend, resConf] = await Promise.all([
+            fetch(`${API_URL}/agendamentos?client_slug=${CLIENT_SLUG}&t=${Date.now()}`),
+            fetch(`${API_URL}/configuracao?client_slug=${CLIENT_SLUG}&t=${Date.now()}`),
+          ]);
+
+          const dadosAgend = await resAgend.json();
+          agendamentosGlobais = Array.isArray(dadosAgend)
+            ? dadosAgend
+            : dadosAgend.results || [];
+
+          const dadosConf = await resConf.json();
+          agendaConfig = dadosConf.results || dadosConf;
+
+          console.log("📅 Agenda carregada com sucesso.");
+        } catch (err) {
+          console.error("❌ Erro ao sincronizar site:", err);
+        }
+      }
+
+      async function enviarRastreio(statusFunil, valor = 0) {
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          fetch(TRACKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              client_slug: CLIENT_SLUG,
+              utm_source: urlParams.get("utm_source") || "direto",
+              dispositivo: /Mobi|Android/i.test(navigator.userAgent)
+                ? "celular"
+                : "desktop",
+              status_funil: statusFunil,
+              valor: valor,
+            }),
+            mode: "cors",
+          });
+        } catch (err) {}
+      }
+
+      // Inicializa tudo
+      carregarDadosIniciais();
+      enviarRastreio("visualizacao_pagina");
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // MOTOR DE AGENDAMENTO ATUALIZADO (VERSÃO PREMIUM COM ÍCONES)
+        const barberForm = document.getElementById("barberForm");
+        if (barberForm) {
+          barberForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = barberForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            // 1. CAPTURA DOS DADOS (COM TRAVA DE SEGURANÇA)
+            const profSelect = document.getElementById("profissional");
+            const barbeiroNome =
+              profSelect && profSelect.selectedIndex >= 0
+                ? profSelect.options[profSelect.selectedIndex].text
+                : "Não selecionado";
+
+            const servSelect = document.getElementById("servico");
+            const servicoNome =
+              servSelect && servSelect.selectedIndex >= 0
+                ? servSelect.options[servSelect.selectedIndex].text
+                : "Não selecionado";
+
+            const estSelect = document.getElementById("estilo");
+            const estiloNome =
+              estSelect && estSelect.selectedIndex >= 0
+                ? estSelect.options[estSelect.selectedIndex].text
+                : "Padrão";
+
+            const campoMimo =
+              document.getElementById("mimo") ||
+              document.getElementById("cortesia");
+            const cortesiaDesejada = campoMimo ? campoMimo.value : "Nenhuma";
+
+            const dataInput = document.getElementById("data").value;
+            const horaInput = document.getElementById("hora").value;
+            const nomeCli = document.getElementById("nome").value;
+
+            if (!horaInput || !dataInput) {
+              alert("Selecione data e horário.");
+              return;
+            }
+
+            // --- TRAVA DE SEGURANÇA SHARK: VALIDAÇÃO DA EQUIPE ---
+            const servicoSelecionado = servSelect.value;
+            const barbeiroSelecionado = profSelect.value;
+
+            // 1. Validação da Progressiva (Exclusiva Thiago)
+            if (servicoSelecionado === "Progressiva" && barbeiroSelecionado !== "Thiago Teixeira") {
+                alert("⚠️ Shark, a Progressiva é um procedimento técnico realizado exclusivamente pelo Thiago Teixeira. Por favor, selecione-o para continuar.");
+                return;
+            }
+
+            // 2. Validação dos Serviços Premium Jeff
+            if (servicoSelecionado.includes("Jeff") && barbeiroSelecionado !== "Jeff Braga") {
+                alert("⚠️ Você selecionou um serviço Premium do Jeff. Por favor, escolha o barbeiro 'Jeff Braga' ou selecione a opção da Equipe Elite.");
+                return;
+            }
+
+            // 3. Validação Inversa: Jeff não faz serviços da Equipe (Preço Diferente)
+            if (!servicoSelecionado.includes("Jeff") && 
+                barbeiroSelecionado === "Jeff Braga" && 
+                !["Sobrancelha", "Depilação Nasal", "Depilação Ouvido", "Matização"].some(s => servicoSelecionado.includes(s))) {
+                alert("⚠️ Para agendar com o Jeff, por favor selecione as opções 'Premium Jeff' no campo de serviços.");
+                return;
+            }
+
+            // Conversão de data para o banco
+            const partes = dataInput.split("/");
+            const dataISO = `${partes[2]}-${partes[1]}-${partes[0]}`;
+
+            btn.innerHTML = "Processando...";
+            btn.disabled = true;
+
+         try {
+              // 1. Verificação de disponibilidade (Shark, com trava de cache Date.now)
+              const resCheck = await fetch(`${API_URL}/agendamentos?client_slug=${CLIENT_SLUG}&t=${Date.now()}`);
+              const dadosCheck = await resCheck.json();
+              const agendadosAtuais = Array.isArray(dadosCheck) ? dadosCheck : (dadosCheck.results || []);
+
+              const ocupado = agendadosAtuais.some(
+                (a) =>
+                  a.data === dataISO &&
+                  a.horario === horaInput &&
+                  a.profissional === barbeiroNome
+              );
+
+              if (ocupado) {
+                alert("⚠️ Este horário foi preenchido agora mesmo. Por favor, escolha outro.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return;
+              }
+
+              const vTotal = parseFloat(servSelect.options[servSelect.selectedIndex]?.dataset.preco) || 0;
+
+              // 2. MONTAGEM DO OBJETO
+              const agendamento = {
+                client_slug: CLIENT_SLUG,
+                nome: nomeCli,
+                whatsapp: "5548999325743",
+                servico: servicoNome,
+                profissional: barbeiroNome,
+                data: dataISO,
+                horario: horaInput,
+                valor: vTotal,
+                cortesia: cortesiaDesejada,
+                estilo_sugerido: estiloNome
+              };
+
+              // 3. ENVIO FINAL
+              const saveRes = await fetch(`${API_URL}/agendamentos`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(agendamento)
+              });
+
+              if (saveRes.ok) {
+                const msg = `💈 *NOVO AGENDAMENTO* 💈\n\n👤 *Cliente:* ${nomeCli}\n✂️ *Serviço:* ${servicoNome}\n🎁 *Cortesia:* ${cortesiaDesejada}\n🧔 *Barbeiro:* ${barbeiroNome}\n📅 *Data:* ${dataInput}\n⏰ *Horário:* ${horaInput}\n💰 *Total:* R$ ${vTotal.toFixed(2)}\n\n✅ *Confirmado via site!*`;
+                window.open(`https://api.whatsapp.com/send?phone=5548999325743&text=${encodeURIComponent(msg)}`, "_blank");
+
+                barberForm.reset();
+                btn.innerHTML = "Agendado! ✅";
+                if (instanceFlatpickr) instanceFlatpickr.clear();
+                document.getElementById("hora").innerHTML = '<option value="" disabled selected>Escolha a data</option>';
+                await carregarDadosIniciais();
+              } else {
+                throw new Error("Falha ao salvar no banco.");
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Erro técnico: " + err.message);
+            } finally {
+              // 4. TRAVA DE SEGURANÇA: DESTRAVA O BOTÃO SEMPRE
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+              }, 3000);
+            }
+          };
+        }
+        // CALENDÁRIO (Armazenado na variável instanceFlatpickr)
+        instanceFlatpickr = flatpickr("#data", {
+          locale: "pt",
+          dateFormat: "d/m/Y",
+          minDate: "today",
+          disable: [(date) => date.getDay() === 0],
+          onChange: (selectedDates) => {
+            if (selectedDates[0]) atualizarHoras(selectedDates[0]);
+          },
+        });
+
+        // FILTRO DE HORÁRIOS
+        window.atualizarHoras = function (dataSelecionada) {
+          const selHora = document.getElementById("hora");
+          const prof = document.getElementById("profissional").value;
+
+          if (!prof) {
+            selHora.innerHTML =
+              '<option value="" disabled selected>Escolha o profissional primeiro</option>';
+            return;
+          }
+          if (!dataSelecionada) return;
+
+          const dataString = dataSelecionada.toLocaleDateString("en-CA"); // Formato YYYY-MM-DD
+
+          // Filtra agendamentos já feitos
+          const ocupados = agendamentosGlobais
+            .filter((a) => a.data === dataString && a.profissional === prof)
+            .map((a) => a.horario);
+
+          // Ajusta o dia da semana (Domingo no JS é 0, no nosso sistema é 7)
+          let diaSemana =
+            dataSelecionada.getDay() === 0 ? 7 : dataSelecionada.getDay();
+
+          // Pega os horários configurados no Admin
+          const disponiveis = agendaConfig
+            .filter((i) => parseInt(i.dia_semana) === diaSemana)
+            .map((i) => i.horario)
+            .sort();
+
+          const livres = disponiveis.filter((h) => !ocupados.includes(h));
+
+          if (disponiveis.length === 0) {
+            selHora.innerHTML =
+              '<option value="" disabled selected>Agenda não disponível para este dia</option>';
+          } else if (livres.length > 0) {
+            selHora.innerHTML =
+              '<option value="" disabled selected>Escolha o horário</option>';
+            livres.forEach((h) => {
+              const opt = document.createElement("option");
+              opt.value = h;
+              opt.innerText = h;
+              selHora.appendChild(opt);
+            });
+          } else {
+            selHora.innerHTML =
+              '<option value="" disabled selected>⚠️ Horários Esgotados</option>';
+          }
+        };
+
+        // --- MOTOR DE FILTRO INTELIGENTE SHARK ---
+        window.filtrarServicosPorBarbeiro = function() {
+          const barbeiro = document.getElementById("profissional").value;
+          const selectServico = document.getElementById("servico");
+          const grupos = selectServico.querySelectorAll("optgroup");
+          
+          // Reset do serviço para o cliente escolher novamente ao trocar de barbeiro
+          selectServico.selectedIndex = 0;
+
+          grupos.forEach(grupo => {
+            const label = grupo.label;
+            
+            if (barbeiro === "Jeff Braga") {
+              // Jeff: Mostra apenas Premium e Estética (Esconde Progressiva)
+              if (label === "Premium Jeff Braga" || label === "Estética & Química") {
+                grupo.style.display = "";
+                const prog = grupo.querySelector('option[value="Progressiva"]');
+                if (prog) prog.style.display = "none";
+              } else {
+                grupo.style.display = "none";
+              }
+            } 
+            else if (barbeiro === "Thiago Teixeira") {
+              // Thiago: Mostra Equipe e Estética (Inclui Progressiva)
+              if (label === "Cabelo & Barba (Equipe)" || label === "Estética & Química") {
+                grupo.style.display = "";
+                const prog = grupo.querySelector('option[value="Progressiva"]');
+                if (prog) prog.style.display = "";
+              } else {
+                grupo.style.display = "none";
+              }
+            }
+            else {
+              // Restante da Equipe: Mostra Equipe e Estética (Sem Progressiva)
+              if (label === "Cabelo & Barba (Equipe)" || label === "Estética & Química") {
+                grupo.style.display = "";
+                const prog = grupo.querySelector('option[value="Progressiva"]');
+                if (prog) prog.style.display = "none";
+              } else {
+                grupo.style.display = "none";
+              }
+            }
+          });
+
+          // Shark, isso garante que os horários carreguem logo após escolher o barbeiro!
+          if (typeof atualizarHoras === 'function') {
+            atualizarHoras();
+          }
+        };
+      });
+
+      // MENU MOBILE
+      // FUNÇÃO GLOBAL (Para o botão encontrar o comando)
+      function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("menuOverlay");
+        const side = document.getElementById("menuSide");
+
+        if (menu.classList.contains("invisible")) {
+          menu.classList.remove("invisible");
+          setTimeout(() => {
+            overlay.classList.replace("opacity-0", "opacity-100");
+            side.classList.replace("translate-x-full", "translate-x-0");
+          }, 10);
+        } else {
+          overlay.classList.replace("opacity-100", "opacity-0");
+          side.classList.replace("translate-x-0", "translate-x-full");
+          setTimeout(() => {
+            menu.classList.add("invisible");
+          }, 300);
+        }
+      }
+
+      // --- LÓGICA DO FORMULÁRIO DE FEEDBACK ---
+      const stars = document.querySelectorAll(".star-rating");
+      const ratingInput = document.getElementById("ratingValue");
+
+      // Faz as estrelas funcionarem ao clicar
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          const val = star.getAttribute("data-value");
+          ratingInput.value = val;
+
+          stars.forEach((s) => {
+            if (s.getAttribute("data-value") <= val) {
+              s.classList.replace("text-gray-700", "text-[#c5a059]");
+            } else {
+              s.classList.replace("text-[#c5a059]", "text-gray-700");
+            }
+          });
+        });
+      });
+
+      // Envia o feedback para o WhatsApp
+      // Envia o feedback para o Banco de Dados do Site E para o WhatsApp
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const btn = this.querySelector('button[type="submit"]');
+          const originalText = btn.innerHTML;
+
+          const nome = document.getElementById("feedbackName").value;
+          const msg = document.getElementById("feedbackMessage").value;
+          const nota = parseInt(ratingInput.value);
+          const estrelas = "⭐".repeat(nota);
+
+          btn.innerHTML = "Enviando...";
+          btn.disabled = true;
+
+          try {
+            // 1. SALVA NO BANCO DE DADOS (Para aparecer no Admin)
+            const response = await fetch(`${API_URL}/feedbacks`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  client_slug: CLIENT_SLUG,
+                  nome: nome,
+                  nota: nota,
+                  mensagem: msg,
+                }),
+              },
+            );
+
+            if (response.ok) {
+              // 2. ABRE O WHATSAPP (Para você receber a notificação na hora)
+              const texto = `⭐ *NOVO FEEDBACK NO SITE* ⭐%0A%0A*Nome:* ${nome}%0A*Nota:* ${estrelas}%0A*Depoimento:* ${msg}`;
+              window.open(
+                `https://api.whatsapp.com/send?phone=5548999325743&text=${texto}`,
+                "_blank",
+              );
+
+              alert(
+                "Obrigado! Seu depoimento foi enviado e aparecerá no site em breve.",
+              );
+              this.reset();
+
+              // Reset visual das estrelas
+              stars.forEach((s) =>
+                s.classList.replace("text-[#c5a059]", "text-gray-700"),
+              );
+              ratingInput.value = "5";
+            } else {
+              alert("Erro ao salvar no site. Tente novamente.");
+            }
+          } catch (err) {
+            console.error("Erro:", err);
+            alert("Ocorreu um erro ao enviar o feedback.");
+          } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          }
+        });
+
+     async function carregarFeedbacksSite() {
+        const container = document.getElementById("feedbacks-container");
+        if (!container) return;
+        try {
+          const res = await fetch(`${API_URL}/feedbacks?client_slug=${CLIENT_SLUG}`);
+          const data = await res.json();
+
+          if (data.feedbacks && data.feedbacks.length > 0) {
+            container.innerHTML = data.feedbacks.map(f => `
+                <div class="swiper-slide px-2">
+                    <div class="glass-dark p-4 rounded-xl border border-white/5 feedback-card" 
+                         onclick="abrirModalFeedback('${f.nome}', '${f.mensagem.replace(/'/g, "\\'")}', ${f.nota})">
+                        <div>
+                          <div class="text-[#c5a059] text-xs mb-2">${"⭐".repeat(f.nota)}</div>
+                          <p class="feedback-text">"${f.mensagem}"</p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <div class="w-6 h-6 bg-[#c5a059]/10 rounded-full flex items-center justify-center text-[#c5a059] font-bold text-[10px]">
+                                ${f.nome.charAt(0)}
+                            </div>
+                            <span class="text-white font-bold uppercase tracking-widest text-[8px] truncate">${f.nome}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+          }
+        } catch (err) { console.error("Erro feedbacks:", err); }
+      }
+
+      // Função para alimentar o modal
+      window.abrirModalFeedback = function(nome, msg, nota) {
+        document.getElementById('modalFullText').innerText = '"' + msg + '"';
+        document.getElementById('modalAuthor').innerText = nome;
+        document.getElementById('modalStars').innerHTML = "⭐".repeat(nota);
+        document.getElementById('modalInitials').innerText = nome.charAt(0);
+        document.getElementById('modalFeedback').style.display = 'flex';
+      }
+
+      // --- LÓGICA DO CARROSSEL DE EXPERIÊNCIAS (SHARK VERSION) ---
+      document.addEventListener("DOMContentLoaded", async () => {
+          // 1. Carrega os dados da nuvem
+          await carregarFeedbacksSite();
+
+          // 2. Ativa o carrossel (2 no celular, 5 no PC)
+          new Swiper(".mySwiper", {
+              slidesPerView: 2,
+              spaceBetween: 10,
+              loop: true,
+              autoplay: {
+                  delay: 3000,
+                  disableOnInteraction: false,
+              },
+              pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true
+              },
+              breakpoints: {
+                  1024: {
+                      slidesPerView: 5,
+                      spaceBetween: 20
+                  }
+              }
+          });
+      });
+
+      // --- LÓGICA DO BOTÃO VOLTAR AO TOPO (LADO ESQUERDO) ---
+      window.addEventListener("scroll", () => {
+        const btn = document.getElementById("backToTop");
+        if (window.scrollY > 400) {
+          btn.classList.remove(
+            "opacity-0",
+            "translate-y-10",
+            "pointer-events-none",
+          );
+          btn.classList.add("opacity-100", "translate-y-0");
+        } else {
+          btn.classList.add(
+            "opacity-0",
+            "translate-y-10",
+            "pointer-events-none",
+          );
+          btn.classList.remove("opacity-100", "translate-y-0");
+        }
+      });
+
+      // Função Shark para abrir explicação dos serviços
+      window.abrirModalServico = function(titulo, descricao) {
+        document.getElementById('modalFullText').innerText = descricao;
+        document.getElementById('modalAuthor').innerText = "DETALHES DO RITUAL";
+        document.getElementById('modalStars').innerHTML = `<span class="text-gold font-titulo text-2xl">${titulo}</span>`;
+        document.getElementById('modalInitials').innerHTML = '<i class="fas fa-info-circle"></i>';
+        document.getElementById('modalFeedback').style.display = 'flex';
+      }
+    </script>
+    <a
+      href="https://api.whatsapp.com/send?phone=5548999325743&text=Olá! Gostaria de agendar um horário."
+      target="_blank"
+      class="fixed bottom-6 right-6 z-50 group flex items-center justify-center w-14 h-14 bg-black/80 backdrop-blur-md border border-[#c5a059] rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:bg-[#c5a059] hover:scale-110 hover:shadow-[0_0_20px_rgba(197,160,89,0.4)] transition-all duration-500"
+    >
+      <i
+        class="fab fa-whatsapp text-2xl text-[#c5a059] group-hover:text-black transition-colors duration-300"
+      ></i>
+    </a>
+
+    <button
+      id="backToTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="fixed bottom-6 left-6 z-50 flex items-center justify-center w-12 h-12 bg-black/80 backdrop-blur-md border border-[#c5a059] rounded-full text-[#c5a059] opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-[#c5a059] hover:text-black shadow-lg"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>

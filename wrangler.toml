@@ -1,0 +1,7 @@
+name = "barbearia-jeff-tubarao"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jeff-db"
+database_id = "d03e3229-2c14-4f67-8ee2-d6b71f1d68dc"

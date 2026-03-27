@@ -1,0 +1,93 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/concluir/:id",
+      "mountPath": "/api/concluir",
+      "method": "POST",
+      "module": [
+        "api/concluir/[id].js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/agendamentos",
+      "mountPath": "/api",
+      "method": "DELETE",
+      "module": [
+        "api/agendamentos.js:onRequestDelete"
+      ]
+    },
+    {
+      "routePath": "/api/agendamentos",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/agendamentos.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/agendamentos",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/agendamentos.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/concluir",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/concluir.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/configuracao",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/configuracao.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/configuracao",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/configuracao.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/feedbacks",
+      "mountPath": "/api",
+      "method": "DELETE",
+      "module": [
+        "api/feedbacks.js:onRequestDelete"
+      ]
+    },
+    {
+      "routePath": "/api/feedbacks",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/feedbacks.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/feedbacks",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/feedbacks.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/historico",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/historico.js:onRequestGet"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

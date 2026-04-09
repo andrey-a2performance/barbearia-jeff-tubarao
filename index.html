@@ -421,14 +421,25 @@
         display: none !important;
       }
 
-      /* Cards de Feedback Compactos e Quadrados */
-      .feedback-card {
-        height: 180px !important; /* Altura travada para ficar quase quadrado */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-        overflow: hidden;
+      /* SHARK FIX: Organização de Campos no Mobile */
+      select, input {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Melhora a visualização do select no Mobile */
+      select option {
+        background-color: #0a0a0a !important;
+        color: white !important;
+        padding: 10px !important;
+      }
+
+      /* Garante que o texto do select não quebre de forma feia */
+      #servico, #profissional, #estilo, #mimo {
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        display: block !important;
       }
       .feedback-text {
         display: -webkit-box;
@@ -1252,28 +1263,28 @@
               >
                 <option value="" disabled selected class="bg-[#0a0a0a]">Selecione o Ritual</option>
                 
-                <optgroup label="Cabelo & Barba (Equipe)" class="bg-[#0a0a0a]">
-                  <option value="Corte Mensal" data-preco="70">Corte Mensal - R$ 70,00</option>
-                  <option value="Barba Mensal" data-preco="50">Barba Mensal - R$ 50,00</option>
-                  <option value="Cabelo e Barba Mensal" data-preco="120">Cabelo e Barba - R$ 120,00</option>
-                  <option value="Recorte Cabelo" data-preco="40">Recorte Cabelo - R$ 40,00</option>
-                  <option value="Recorte Barba" data-preco="30">Recorte Barba - R$ 30,00</option>
-                </optgroup>
+              <optgroup label="Equipe Elite" class="bg-[#0a0a0a]">
+                  <option value="Corte Mensal" data-preco="70">Corte - R$ 70</option>
+                  <option value="Barba Mensal" data-preco="50">Barba - R$ 50</option>
+                  <option value="Cabelo e Barba Mensal" data-preco="120">Cabelo + Barba - R$ 120</option>
+                  <option value="Recorte Cabelo" data-preco="40">Recorte Cabelo - R$ 40</option>
+                  <option value="Recorte Barba" data-preco="30">Recorte Barba - R$ 30</option>
+                </optgroup>
 
-                <optgroup label="Premium Jeff Braga" class="bg-[#0a0a0a]">
-                  <option value="Corte Mensal Jeff" data-preco="80">Corte Mensal Jeff - R$ 80,00</option>
-                  <option value="Barba Mensal Jeff" data-preco="55">Barba Mensal Jeff - R$ 55,00</option>
-                  <option value="Cabelo e Barba Mensal Jeff" data-preco="130">Cabelo e Barba Jeff - R$ 130,00</option>
-                </optgroup>
+                <optgroup label="Premium Jeff Braga" class="bg-[#0a0a0a]">
+                  <option value="Corte Mensal Jeff" data-preco="80">Corte Jeff - R$ 80</option>
+                  <option value="Barba Mensal Jeff" data-preco="55">Barba Jeff - R$ 55</option>
+                  <option value="Cabelo e Barba Mensal Jeff" data-preco="130">Combo Jeff - R$ 130</option>
+                </optgroup>
 
-                <optgroup label="Estética & Química" class="bg-[#0a0a0a]">
-                  <option value="Progressiva" data-preco="130">Progressiva (Thiago) - R$ 130,00</option>
-                  <option value="Matização Cabelo" data-preco="70">Matização Cabelo (Curto/Longo) - R$ 70,00+</option>
-                  <option value="Matização Barba" data-preco="35">Matização Barba - R$ 35,00</option>
-                  <option value="Design Sobrancelha" data-preco="25">Design Sobrancelha - R$ 25,00</option>
-                  <option value="Depilação Nasal" data-preco="25">Depilação Nasal - R$ 25,00</option>
-                  <option value="Depilação Ouvido" data-preco="25">Depilação Ouvido - R$ 25,00</option>
-                </optgroup>
+                <optgroup label="Química & Estética" class="bg-[#0a0a0a]">
+                  <option value="Progressiva" data-preco="130">Progressiva - R$ 130</option>
+                  <option value="Matização Cabelo" data-preco="70">Matização Cabelo - R$ 70+</option>
+                  <option value="Matização Barba" data-preco="35">Matização Barba - R$ 35</option>
+                  <option value="Design Sobrancelha" data-preco="25">Sobrancelha - R$ 25</option>
+                  <option value="Depilação Nasal" data-preco="25">Nariz (Cera) - R$ 25</option>
+                  <option value="Depilação Ouvido" data-preco="25">Ouvido (Cera) - R$ 25</option>
+                </optgroup>
               </select>
             </div>
 

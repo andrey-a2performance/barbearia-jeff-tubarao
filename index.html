@@ -421,49 +421,41 @@
         display: none !important;
       }
 
-    /* SHARK FIX: Organização de Campos no Mobile - Versão Compacta */
-      select, input {
+  /* SHARK FIX: Blindagem Total contra Quebra de Linha */
+      select#servico {
         width: 100% !important;
-        box-sizing: border-box !important;
-      }
-
-      /* Reduz e trava o texto dos serviços para não quebrar no celular */
-      select#servico, select#servico option {
-        font-size: 11px !important; /* Letra menor para caber tudo */
-        letter-spacing: 0px !important;
-        padding: 8px !important;
-      }
-
-      /* Melhora a visualização do select no Mobile */
-      select option {
-        background-color: #0a0a0a !important;
-        color: white !important;
-      }
-      
-      /* Melhora a visualização do select no Mobile */
-      select option {
-        background-color: #0a0a0a !important;
-        color: white !important;
-        padding: 10px !important;
-      }
-
-      /* Garante que o texto do select não quebre de forma feia */
-      #servico, #profissional, #estilo, #mimo {
-        text-overflow: ellipsis !important;
-        overflow: hidden !important;
-        white-space: nowrap !important;
         display: block !important;
+        font-size: 12px !important;
+        padding: 12px 30px 12px 10px !important;
+        height: auto !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background-color: rgba(0,0,0,0.4) !important;
+        color: white !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 12px !important;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+        background-size: 15px !important;
       }
+
+      select#servico option {
+        background-color: #0a0a0a !important;
+        color: white !important;
+        font-size: 12px !important;
+      }
+
+      /* Mantém os feedbacks e modais organizados */
       .feedback-text {
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* Mostra apenas 3 linhas de texto */
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 0.8rem;
         color: #ccc;
       }
-      /* Estilo do Modal (Janela que abre) */
       .modal-feedback {
         display: none;
         position: fixed;
@@ -474,8 +466,6 @@
         justify-content: center;
         padding: 20px;
       }
-
-
     </style>
   </head>
   <body class="antialiased">

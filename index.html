@@ -421,10 +421,23 @@
         display: none !important;
       }
 
-      /* SHARK FIX: Organização de Campos no Mobile */
+    /* SHARK FIX: Organização de Campos no Mobile - Versão Compacta */
       select, input {
         width: 100% !important;
         box-sizing: border-box !important;
+      }
+
+      /* Reduz e trava o texto dos serviços para não quebrar no celular */
+      select#servico, select#servico option {
+        font-size: 11px !important; /* Letra menor para caber tudo */
+        letter-spacing: 0px !important;
+        padding: 8px !important;
+      }
+
+      /* Melhora a visualização do select no Mobile */
+      select option {
+        background-color: #0a0a0a !important;
+        color: white !important;
       }
       
       /* Melhora a visualização do select no Mobile */
